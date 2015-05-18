@@ -6,10 +6,12 @@
 package mice.interactive;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -63,7 +65,7 @@ public class laggTillProjekt extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jbnLäggTillAnställd = new javax.swing.JButton();
         combBytLedare = new javax.swing.JComboBox();
-        combSetAnstalld = new javax.swing.JComboBox();
+        combAndraAnstalld = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         combSetLeader = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
@@ -77,7 +79,6 @@ public class laggTillProjekt extends javax.swing.JFrame {
         labelcombanstalld = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,18 +122,23 @@ public class laggTillProjekt extends javax.swing.JFrame {
         jButton7.setText("Ta bort");
 
         jbnLäggTillAnställd.setText("lägg till");
+        jbnLäggTillAnställd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbnLäggTillAnställdActionPerformed(evt);
+            }
+        });
 
         combBytLedare.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        combSetAnstalld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combSetAnstalld.addItemListener(new java.awt.event.ItemListener() {
+        combAndraAnstalld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combAndraAnstalld.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                combSetAnstalldItemStateChanged(evt);
+                combAndraAnstalldItemStateChanged(evt);
             }
         });
-        combSetAnstalld.addActionListener(new java.awt.event.ActionListener() {
+        combAndraAnstalld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combSetAnstalldActionPerformed(evt);
+                combAndraAnstalldActionPerformed(evt);
             }
         });
 
@@ -145,15 +151,17 @@ public class laggTillProjekt extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel11))
-                                .addGap(53, 53, 53))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(combSetAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel8)
+                            .addComponent(combChangeProject, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(combBytLedare, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combAndraAnstalld, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LblProjektNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblProjectLeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,13 +173,7 @@ public class laggTillProjekt extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton7))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 45, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(combChangeProject, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combBytLedare, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 45, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,7 +202,7 @@ public class laggTillProjekt extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbnLäggTillAnställd)
                             .addComponent(jButton7)
-                            .addComponent(combSetAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(combAndraAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20)
                 .addComponent(combBytLedare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -303,17 +305,10 @@ public class laggTillProjekt extends javax.swing.JFrame {
                 .addComponent(labelcombanstalld)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 77, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jButton2.setText("lägg till projekt");
-
-        jButton9.setText("Uppdatera Projekt");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -332,23 +327,17 @@ public class laggTillProjekt extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(32, 32, 32))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(LabelÖverskrift)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(LabelÖverskrift)
                         .addGap(27, 27, 27)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -356,37 +345,72 @@ public class laggTillProjekt extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanelAnställd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jButton2)
+                        .addContainerGap(88, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jButton9)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                        .addGap(48, 48, 48))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combSetAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combSetAnstalldActionPerformed
+    private void combAndraAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combAndraAnstalldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combSetAnstalldActionPerformed
+    }//GEN-LAST:event_combAndraAnstalldActionPerformed
 
     private void jTextProjektNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextProjektNamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextProjektNamnActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void combAndraAnstalldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combAndraAnstalldItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void combSetAnstalldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combSetAnstalldItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combSetAnstalldItemStateChanged
+    }//GEN-LAST:event_combAndraAnstalldItemStateChanged
 
     private void combChangeProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combChangeProjectItemStateChanged
       displayProjectInfo();
     }//GEN-LAST:event_combChangeProjectItemStateChanged
+
+    private void jbnLäggTillAnställdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnLäggTillAnställdActionPerformed
+        
+        if(combAndraAnstalld.getSelectedItem().toString().equals("<none>"))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Välj en anställd");
+            return;
+        }
+        boolean finnsI = false;
+        ListModel model = jListProjektJobbare.getModel();
+        for( int i = 0; i < model.getSize(); i++)
+        {
+            if(model.getElementAt(i).toString().equals(combAndraAnstalld.getSelectedItem().toString()))
+            {
+                finnsI = true;
+            }
+            
+        }
+        if (finnsI)
+        {
+           JOptionPane.showMessageDialog(rootPane, "Den anställde jobbar redan i projektet");
+           return;
+        }
+        String valdAnstalld = combAndraAnstalld.getSelectedItem().toString();
+        String anvnamn = valdAnstalld.substring((valdAnstalld.indexOf("(") + 1), 
+                                                       valdAnstalld.indexOf(")"));
+        String valtProjekt = combChangeProject.getSelectedItem().toString();
+        
+        String aid = konverteraTillAid(anvnamn);
+        String sid = konverteraTillSid(valtProjekt);
+        
+        String query = "insert into ARBETAR_I (AID, SID) values('" + aid + "','" + sid + "');";
+        
+        try {
+            databasen.insert(query);
+        } catch (InfException ex) {
+        }
+        setProjectlist();
+       
+    }//GEN-LAST:event_jbnLäggTillAnställdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -427,16 +451,15 @@ public class laggTillProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel LabelÖverskrift;
     private javax.swing.JLabel LblProjektNamn;
     private javax.swing.JPanel PanelAnställd;
+    private javax.swing.JComboBox combAndraAnstalld;
     private javax.swing.JComboBox combBytLedare;
     private javax.swing.JComboBox combChangeProject;
-    private javax.swing.JComboBox combSetAnstalld;
     private javax.swing.JComboBox combSetLeader;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -494,16 +517,18 @@ public class laggTillProjekt extends javax.swing.JFrame {
         }
     }
     private void fyllAnstalld() {
-       String query = "SELECT ANSTALLD.NAMN FROM ANSTALLD ORDER BY NAMN ASC";
+       String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM ANSTALLD ORDER BY NAMN ASC";
         try {
             
-            combSetAnstalld.removeAllItems();
-            ArrayList<String> anstalldLista = databasen.fetchColumn(query);
-            combSetAnstalld.addItem("<none>");
-            for(String anstalld : anstalldLista)
+            combAndraAnstalld.removeAllItems();
+            ArrayList<HashMap<String,String>> anstalldLista = new ArrayList<>();
+            anstalldLista = databasen.fetchRows(query);
+            combAndraAnstalld.addItem("<none>");
+            for(HashMap<String,String> anstalld : anstalldLista)
             {
-                combSetAnstalld.addItem(anstalld);
                 
+                String enAnstalld = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
+                combAndraAnstalld.addItem(enAnstalld);
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -582,13 +607,15 @@ public class laggTillProjekt extends javax.swing.JFrame {
     try {
         DefaultListModel DLM = new DefaultListModel();
         String spelprojekt = combChangeProject.getSelectedItem().toString();
-        String query = "SELECT ANSTALLD.NAMN FROM ANSTALLD join ARBETAR_I on ANSTALLD.AID = ARBETAR_I.AID"
+        String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM ANSTALLD join ARBETAR_I on ANSTALLD.AID = ARBETAR_I.AID"
                      + " JOIN SPELPROJEKT on ARBETAR_I.SID = SPELPROJEKT.SID "
                      + "WHERE SPELPROJEKT.BETECKNING = '" + spelprojekt + "'";
-        ArrayList<String> anstallda = databasen.fetchColumn(query);
-            for(String anstalld : anstallda)
+            ArrayList<HashMap<String,String>> anstallda = new ArrayList<>();
+            anstallda = databasen.fetchRows(query);
+            for(HashMap<String,String> anstalld : anstallda)
             {
-                DLM.addElement(anstalld);
+               String enAnstalld = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
+               DLM.addElement(enAnstalld);
             }
             jListProjektJobbare.setModel(DLM);
         } 
@@ -596,5 +623,38 @@ public class laggTillProjekt extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
         }
 
-    }  
+    }
+    private String konverteraTillAid(String anvNamn)
+    {
+        
+        String aid = "";
+        
+       
+        String query = "SELECT AID FROM ANSTALLD WHERE ANVNAMN = '" + anvNamn + "'";
+        try{
+            aid = databasen.fetchSingle(query);
+        }
+        catch(InfException ex)
+        {
+            System.out.println("BLÄV FÄL!");
+        }
+        
+        
+        return aid;
+    }
+    private String konverteraTillSid(String valtProject)
+    { 
+        String sid = "";
+        try {
+           
+            String query = "SELECT SPELPROJEKT.SID FROM SPELPROJEKT where BETECKNING = '" + valtProject + "'";
+            sid = databasen.fetchSingle(query);
+            }
+            catch (InfException ex) 
+             {
+             }
+        return sid;
+            
+     } 
+    
 }
