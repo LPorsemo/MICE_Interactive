@@ -49,16 +49,16 @@ public class laggTillProjekt extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         LabelÖverskrift = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        combChangeProject = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListProjektJobbare = new javax.swing.JList();
         combBytLedare = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
-        combChangeProject = new javax.swing.JComboBox();
         jComboBox5 = new javax.swing.JComboBox();
         jButton9 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -73,9 +73,9 @@ public class laggTillProjekt extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         PanelAnställd = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        labelcombanstalld = new javax.swing.JLabel();
         combSetAnstalld = new javax.swing.JComboBox();
-        jButton5 = new javax.swing.JButton();
+        jbnLäggTillAnställd = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,11 +95,13 @@ public class laggTillProjekt extends javax.swing.JFrame {
         LabelÖverskrift.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         LabelÖverskrift.setText("Lägg till projekt");
 
-        jLabel4.setText("<none>");
+        jLabel8.setText("Valt Projekt");
 
         jLabel7.setText("Projektnamn:");
 
-        jLabel8.setText("Valt Projekt");
+        jLabel4.setText("<none>");
+
+        combChangeProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setText("Ledare:");
 
@@ -115,8 +117,6 @@ public class laggTillProjekt extends javax.swing.JFrame {
         combBytLedare.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setText("<none>");
-
-        combChangeProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -274,7 +274,7 @@ public class laggTillProjekt extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        jLabel6.setText("Välj en anställd");
+        labelcombanstalld.setText("Välj en anställd");
 
         combSetAnstalld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         combSetAnstalld.addItemListener(new java.awt.event.ItemListener() {
@@ -288,7 +288,7 @@ public class laggTillProjekt extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("lägg till");
+        jbnLäggTillAnställd.setText("lägg till");
 
         javax.swing.GroupLayout PanelAnställdLayout = new javax.swing.GroupLayout(PanelAnställd);
         PanelAnställd.setLayout(PanelAnställdLayout);
@@ -297,8 +297,8 @@ public class laggTillProjekt extends javax.swing.JFrame {
             .addGroup(PanelAnställdLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanelAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel6)
+                    .addComponent(jbnLäggTillAnställd)
+                    .addComponent(labelcombanstalld)
                     .addComponent(combSetAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -306,11 +306,11 @@ public class laggTillProjekt extends javax.swing.JFrame {
             PanelAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAnställdLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(labelcombanstalld)
                 .addGap(21, 21, 21)
                 .addComponent(combSetAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(jbnLäggTillAnställd)
                 .addGap(0, 31, Short.MAX_VALUE))
         );
 
@@ -413,7 +413,6 @@ public class laggTillProjekt extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -424,7 +423,6 @@ public class laggTillProjekt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -435,6 +433,8 @@ public class laggTillProjekt extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbnLäggTillAnställd;
+    private javax.swing.JLabel labelcombanstalld;
     // End of variables declaration//GEN-END:variables
 
     private void setFyllProject() {
