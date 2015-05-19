@@ -51,6 +51,7 @@ public class AndraProjekt extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         Overpanel = new javax.swing.JPanel();
         ValjProjektPanel = new javax.swing.JPanel();
         combChangeProject = new javax.swing.JComboBox();
@@ -60,8 +61,14 @@ public class AndraProjekt extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblProjectLeaderName = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblProjektbeskrivning = new javax.swing.JLabel();
         LblProjektNamn = new javax.swing.JLabel();
+        lblStartDatumbeskrivning = new javax.swing.JLabel();
+        lblslutdatumbeskrivning = new javax.swing.JLabel();
+        lblplattformbeskrivning = new javax.swing.JLabel();
+        lblPlattformsNamn = new javax.swing.JLabel();
+        lblStartdatum = new javax.swing.JLabel();
+        lblSlutdatum = new javax.swing.JLabel();
         ValjAnstalldPanel = new javax.swing.JPanel();
         combAndraAnstalld = new javax.swing.JComboBox();
         jbnLäggTillAnställd = new javax.swing.JButton();
@@ -69,6 +76,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         SattLedarePanel = new javax.swing.JPanel();
         combSetLeader = new javax.swing.JComboBox();
         jbnSattNyLedare = new javax.swing.JButton();
+        SattDatumPanel = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,6 +90,8 @@ public class AndraProjekt extends javax.swing.JFrame {
         );
 
         jButton8.setText("jButton8");
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,9 +132,21 @@ public class AndraProjekt extends javax.swing.JFrame {
 
         lblProjectLeaderName.setText("<none>");
 
-        jLabel7.setText("Projektnamn:");
+        lblProjektbeskrivning.setText("Projektnamn:");
 
         LblProjektNamn.setText("<none>");
+
+        lblStartDatumbeskrivning.setText("Startdatum:");
+
+        lblslutdatumbeskrivning.setText("Slutdatum:");
+
+        lblplattformbeskrivning.setText("Plattformar:");
+
+        lblPlattformsNamn.setText("<none>");
+
+        lblStartdatum.setText("<none>");
+
+        lblSlutdatum.setText("<none>");
 
         javax.swing.GroupLayout ValtProjektPanelLayout = new javax.swing.GroupLayout(ValtProjektPanel);
         ValtProjektPanel.setLayout(ValtProjektPanelLayout);
@@ -133,31 +155,53 @@ public class AndraProjekt extends javax.swing.JFrame {
             .addGroup(ValtProjektPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LblProjektNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(lblProjectLeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ValtProjektPanelLayout.createSequentialGroup()
+                        .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9)
+                            .addComponent(lblStartDatumbeskrivning)
+                            .addComponent(lblslutdatumbeskrivning)
+                            .addComponent(lblplattformbeskrivning))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblProjectLeaderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPlattformsNamn)
+                            .addComponent(lblStartdatum)
+                            .addComponent(lblSlutdatum)))
+                    .addGroup(ValtProjektPanelLayout.createSequentialGroup()
+                        .addComponent(lblProjektbeskrivning)
+                        .addGap(29, 29, 29)
+                        .addComponent(LblProjektNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ValtProjektPanelLayout.setVerticalGroup(
             ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ValtProjektPanelLayout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblProjektbeskrivning)
                     .addComponent(LblProjektNamn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblplattformbeskrivning)
+                    .addComponent(lblPlattformsNamn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStartDatumbeskrivning)
+                    .addComponent(lblStartdatum))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblslutdatumbeskrivning)
+                    .addComponent(lblSlutdatum))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(lblProjectLeaderName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -243,18 +287,35 @@ public class AndraProjekt extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        SattDatumPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Datum"));
+
+        javax.swing.GroupLayout SattDatumPanelLayout = new javax.swing.GroupLayout(SattDatumPanel);
+        SattDatumPanel.setLayout(SattDatumPanelLayout);
+        SattDatumPanelLayout.setHorizontalGroup(
+            SattDatumPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 375, Short.MAX_VALUE)
+        );
+        SattDatumPanelLayout.setVerticalGroup(
+            SattDatumPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 82, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout OverpanelLayout = new javax.swing.GroupLayout(Overpanel);
         Overpanel.setLayout(OverpanelLayout);
         OverpanelLayout.setHorizontalGroup(
             OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OverpanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ValjAnstalldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SattLedarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ValtProjektPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(OverpanelLayout.createSequentialGroup()
+                        .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ValtProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SattDatumPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         OverpanelLayout.setVerticalGroup(
             OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,12 +323,14 @@ public class AndraProjekt extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ValtProjektPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ValtProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SattLedarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ValjAnstalldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SattLedarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(SattDatumPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,14 +340,14 @@ public class AndraProjekt extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(Overpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(Overpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(Overpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -479,6 +542,7 @@ public class AndraProjekt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblProjektNamn;
     private javax.swing.JPanel Overpanel;
+    private javax.swing.JPanel SattDatumPanel;
     private javax.swing.JPanel SattLedarePanel;
     private javax.swing.JPanel ValjAnstalldPanel;
     private javax.swing.JPanel ValjProjektPanel;
@@ -488,15 +552,22 @@ public class AndraProjekt extends javax.swing.JFrame {
     private javax.swing.JComboBox combSetLeader;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListProjektJobbare;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbnLäggTillAnställd;
     private javax.swing.JButton jbnSattNyLedare;
     private javax.swing.JButton jbnTaBortAnstalld;
+    private javax.swing.JLabel lblPlattformsNamn;
     private javax.swing.JLabel lblProjectLeaderName;
+    private javax.swing.JLabel lblProjektbeskrivning;
+    private javax.swing.JLabel lblSlutdatum;
+    private javax.swing.JLabel lblStartDatumbeskrivning;
+    private javax.swing.JLabel lblStartdatum;
+    private javax.swing.JLabel lblplattformbeskrivning;
+    private javax.swing.JLabel lblslutdatumbeskrivning;
     // End of variables declaration//GEN-END:variables
 
     private void setFyllProject() {
@@ -563,6 +634,7 @@ public class AndraProjekt extends javax.swing.JFrame {
        {
          setProjectLeaderName();
          setProjectlist();
+        
        }
         
         
@@ -578,6 +650,9 @@ public class AndraProjekt extends javax.swing.JFrame {
         if (selectedIndex == 0) {
             LblProjektNamn.setText("<none>");
             lblProjectLeaderName.setText("<none>");
+            lblPlattformsNamn.setText("<none>");
+            lblStartdatum.setText("<none>");
+            lblSlutdatum.setText("<none>");
             return false;
         }
         String selectedProject = combChangeProject.getSelectedItem().toString();
@@ -658,5 +733,11 @@ public class AndraProjekt extends javax.swing.JFrame {
         return sid;
             
      } 
+
+    private void setProjectdatum() {
+        
+        
+    
+    }
     
 }
