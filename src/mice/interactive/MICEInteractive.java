@@ -19,7 +19,8 @@ public class MICEInteractive {
     
      
     public static void main(String[] args) {
-        // TODO code application logic here
+     Inloggning inloggningFrame = new Inloggning(); 
+                inloggningFrame.setVisible(true);
     }
     
 }

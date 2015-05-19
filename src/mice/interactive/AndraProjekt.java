@@ -34,7 +34,6 @@ public class AndraProjekt extends javax.swing.JFrame {
         }
         initComponents();
         setFyllProject();
-        
         fyllAnstalld();
         fyllLedare();
       
