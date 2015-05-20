@@ -34,7 +34,8 @@ public class DatabaseManager {
     {
         ArrayList<HashMap<String,String>> anstalldLista = new ArrayList<>();
         ArrayList<String> listan = new ArrayList<>();
-       String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM ANSTALLD ORDER BY NAMN ASC";
+             String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM ANSTALLD ORDER BY NAMN ASC";
+       
         try {
             
             anstalldLista = database.fetchRows(query);
@@ -48,6 +49,39 @@ public class DatabaseManager {
         }
         return listan;
     }
-    
+    public ArrayList<String> getLedareLista()
+    {
+        ArrayList<HashMap<String,String>> anstalldLista = new ArrayList<>();
+        ArrayList<String> listan = new ArrayList<>();
+        String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM PROJEKTLEDARE\n" +
+                       "JOIN ANSTALLD ON PROJEKTLEDARE.AID = ANSTALLD.AID\n" +
+                       "ORDER BY NAMN ASC";
+        try {
+            
+            anstalldLista = database.fetchRows(query);
+            for(HashMap<String, String> anstalld : anstalldLista)
+            {
+                String enLedare = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
+                listan.add(enLedare);
+            }
+        } catch (InfException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return listan;
+    }
+    public ArrayList<String> getSpelprojektnamnLista()
+    {
+            ArrayList<String> projektnamn = new ArrayList<>();
+            String query = "SELECT BETECKNING FROM SPELPROJEKT";
+        try {
+
+            projektnamn = database.fetchColumn(query);
+            
+           
+        } catch (InfException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return projektnamn;    
+    }
     
 }

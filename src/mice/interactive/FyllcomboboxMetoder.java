@@ -31,11 +31,6 @@ public class FyllcomboboxMetoder {
     {
         combobox.addItem(item);
     }
-    return combobox;
-    
+    return combobox;   
 }
-    
 }
-
-
-
