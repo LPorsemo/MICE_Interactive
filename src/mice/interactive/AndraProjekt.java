@@ -34,7 +34,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         }
         initComponents();
         setFyllProject();
-        fyllAnstalld();
+        fyllAnstalld2();
         fyllLedare();
       
     }
@@ -625,7 +625,18 @@ public class AndraProjekt extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
-
+        private void fyllAnstalld2() {
+        
+            
+        DatabaseManager dbm = new DatabaseManager();
+        
+        FyllcomboboxMetoder.fyllVilkenComboSomHelst(combAndraAnstalld, dbm.getAnstalldLista());
+        
+        combAndraAnstalld.insertItemAt("<none>", 0);
+        combAndraAnstalld.setSelectedIndex(0);
+        
+        
+    }
     private void displayProjectInfo()
     {
         jListProjektJobbare.setModel(new DefaultListModel());

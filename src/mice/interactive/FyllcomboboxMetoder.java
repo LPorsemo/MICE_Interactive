@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -19,18 +20,22 @@ import oru.inf.InfException;
  */
 public class FyllcomboboxMetoder {
     
-    private InfDB databasen;
 
-public FyllcomboboxMetoder(){
 
-try {
-            databasen = new InfDB("C:\\Program Files\\databasen\\MICEDB.FDB");
-       
-        } catch (InfException ex) {
-            Logger.getLogger(Sokpanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    public static JComboBox fyllVilkenComboSomHelst(JComboBox combobox, ArrayList<String> lista)
+{
+    combobox.removeAllItems();
     
-
-
+    
+    for(String item : lista)
+    {
+        combobox.addItem(item);
+    }
+    return combobox;
+    
 }
+    
+}
+
+
+
