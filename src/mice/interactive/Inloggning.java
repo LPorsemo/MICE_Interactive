@@ -163,7 +163,7 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // Loggar in i systemet:
-        if(Valedering.emptyString(anvText.getText()) || Valedering.emptyString(losenText.getText()))
+        if(Validering.emptyString(anvText.getText()) || Validering.emptyString(losenText.getText()))
             
                 {
                     JOptionPane.showMessageDialog(null, "Saknas användarnamn eller lösenord");

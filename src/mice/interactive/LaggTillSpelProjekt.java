@@ -5,8 +5,14 @@
  */
 package mice.interactive;
 
+import java.awt.Component;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import oru.inf.InfException;
 
 /**
  *
@@ -21,6 +27,12 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         initComponents();
         fyllCombAnstalld();
         fyllCombLedare();
+        fyllCombPlattformar();
+        fyllDatumBoxar();
+        addItemListenersForDateCombos();
+         
+        setAnstalldlistor();
+
     }
 
     /**
@@ -33,28 +45,58 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private void initComponents() {
 
         forstapanel = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        LblÖverskrift = new javax.swing.JLabel();
+        PBakgrund = new javax.swing.JPanel();
+        PProjekt = new javax.swing.JPanel();
         laggTillProjektNamn = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblProjektNamn = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        PanelAnställd = new javax.swing.JPanel();
-        combAnstalld = new javax.swing.JComboBox();
-        LabelÖverskrift = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        PLedare = new javax.swing.JPanel();
         combLedare = new javax.swing.JComboBox();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jbnLaggTillLedare = new javax.swing.JButton();
+        PAnställd = new javax.swing.JPanel();
+        combAnstalld = new javax.swing.JComboBox();
+        jbnLaggtillAnstalld = new javax.swing.JButton();
+        jbnTabortAnstalld = new javax.swing.JButton();
+        PStartdatum = new javax.swing.JPanel();
+        jbnStartdatum = new javax.swing.JButton();
+        combStartAr = new javax.swing.JComboBox();
+        combStartManad = new javax.swing.JComboBox();
+        combStartDag = new javax.swing.JComboBox();
+        PSlutdatum = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        combSlutAr = new javax.swing.JComboBox();
+        combSlutManad = new javax.swing.JComboBox();
+        combSlutDag = new javax.swing.JComboBox();
+        PPlattform = new javax.swing.JPanel();
+        combPlattformar = new javax.swing.JComboBox();
+        jbnLaggTillPlattform = new javax.swing.JButton();
+        jbnTaBortPlattform = new javax.swing.JButton();
+        PBakgrund2 = new javax.swing.JPanel();
+        PProjekt2 = new javax.swing.JPanel();
         lblprojektnamn = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        PLedare2 = new javax.swing.JPanel();
+        lblLedare = new javax.swing.JLabel();
+        PAnställd2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jListAnstallda = new javax.swing.JList();
+        PStartdatum2 = new javax.swing.JPanel();
+        lblStartdatum = new javax.swing.JLabel();
+        PSlutdatum2 = new javax.swing.JPanel();
+        lblSlutdatum = new javax.swing.JLabel();
+        PPlattformar2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListPlattformar = new javax.swing.JList();
+        jbnLaggTillProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Nytt Projekt"));
+        LblÖverskrift.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LblÖverskrift.setText("Lägg till projekt");
+
+        PBakgrund.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lägg till projekt"));
+
+        PProjekt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Nytt Projekt"));
 
         laggTillProjektNamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +104,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Namn:");
+        lblProjektNamn.setText("Namn:");
 
         jButton1.setText("lägg till");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -71,35 +113,65 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout PProjektLayout = new javax.swing.GroupLayout(PProjekt);
+        PProjekt.setLayout(PProjektLayout);
+        PProjektLayout.setHorizontalGroup(
+            PProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PProjektLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(lblProjektNamn)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 155, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addComponent(jButton1)
-                .addContainerGap(18, Short.MAX_VALUE))
+        PProjektLayout.setVerticalGroup(
+            PProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PProjektLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PProjektLayout.createSequentialGroup()
+                        .addGroup(PProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblProjektNamn)
+                            .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PProjektLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(21, 21, 21))))
         );
 
-        PanelAnställd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj Anställd"));
+        PLedare.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Ledare"));
+
+        combLedare.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jbnLaggTillLedare.setText("lägg till");
+        jbnLaggTillLedare.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnLaggTillLedareMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PLedareLayout = new javax.swing.GroupLayout(PLedare);
+        PLedare.setLayout(PLedareLayout);
+        PLedareLayout.setHorizontalGroup(
+            PLedareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PLedareLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(combLedare, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbnLaggTillLedare))
+        );
+        PLedareLayout.setVerticalGroup(
+            PLedareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PLedareLayout.createSequentialGroup()
+                .addComponent(combLedare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLedareLayout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jbnLaggTillLedare))
+        );
+
+        PAnställd.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj Anställd"));
 
         combAnstalld.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         combAnstalld.addActionListener(new java.awt.event.ActionListener() {
@@ -108,173 +180,406 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout PanelAnställdLayout = new javax.swing.GroupLayout(PanelAnställd);
-        PanelAnställd.setLayout(PanelAnställdLayout);
-        PanelAnställdLayout.setHorizontalGroup(
-            PanelAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAnställdLayout.createSequentialGroup()
+        jbnLaggtillAnstalld.setText("Lägg till");
+        jbnLaggtillAnstalld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnLaggtillAnstalldMouseClicked(evt);
+            }
+        });
+
+        jbnTabortAnstalld.setText("Ta bort");
+        jbnTabortAnstalld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnTabortAnstalldMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PAnställdLayout = new javax.swing.GroupLayout(PAnställd);
+        PAnställd.setLayout(PAnställdLayout);
+        PAnställdLayout.setHorizontalGroup(
+            PAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PAnställdLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(combAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PAnställdLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbnTabortAnstalld)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbnLaggtillAnstalld))
         );
-        PanelAnställdLayout.setVerticalGroup(
-            PanelAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAnställdLayout.createSequentialGroup()
+        PAnställdLayout.setVerticalGroup(
+            PAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PAnställdLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(combAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(PAnställdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbnLaggtillAnstalld)
+                    .addComponent(jbnTabortAnstalld)))
         );
 
-        LabelÖverskrift.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        LabelÖverskrift.setText("Lägg till projekt");
+        PStartdatum.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Startdatum"));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Ledare"));
+        jbnStartdatum.setText("Lägg till");
+        jbnStartdatum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnStartdatumMouseClicked(evt);
+            }
+        });
+        jbnStartdatum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbnStartdatumActionPerformed(evt);
+            }
+        });
 
-        combLedare.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combStartAr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton4.setText("lägg till");
+        combStartManad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        combStartDag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout PStartdatumLayout = new javax.swing.GroupLayout(PStartdatum);
+        PStartdatum.setLayout(PStartdatumLayout);
+        PStartdatumLayout.setHorizontalGroup(
+            PStartdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PStartdatumLayout.createSequentialGroup()
+                .addComponent(combStartAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combStartManad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combStartDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbnStartdatum))
+        );
+        PStartdatumLayout.setVerticalGroup(
+            PStartdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PStartdatumLayout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jbnStartdatum))
+            .addGroup(PStartdatumLayout.createSequentialGroup()
+                .addGroup(PStartdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combStartAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combStartManad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combStartDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        PSlutdatum.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Slutdatum"));
+
+        jButton5.setText("Lägg till");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        combSlutAr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        combSlutManad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        combSlutDag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout PSlutdatumLayout = new javax.swing.GroupLayout(PSlutdatum);
+        PSlutdatum.setLayout(PSlutdatumLayout);
+        PSlutdatumLayout.setHorizontalGroup(
+            PSlutdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PSlutdatumLayout.createSequentialGroup()
+                .addComponent(combSlutAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combSlutManad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(combSlutDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5))
+        );
+        PSlutdatumLayout.setVerticalGroup(
+            PSlutdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PSlutdatumLayout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jButton5))
+            .addGroup(PSlutdatumLayout.createSequentialGroup()
+                .addGroup(PSlutdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combSlutAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combSlutManad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combSlutDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        PPlattform.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Platformar"));
+
+        combPlattformar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jbnLaggTillPlattform.setText("Lägg till");
+        jbnLaggTillPlattform.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnLaggTillPlattformMouseClicked(evt);
+            }
+        });
+
+        jbnTaBortPlattform.setText("Ta bort");
+        jbnTaBortPlattform.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnTaBortPlattformMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PPlattformLayout = new javax.swing.GroupLayout(PPlattform);
+        PPlattform.setLayout(PPlattformLayout);
+        PPlattformLayout.setHorizontalGroup(
+            PPlattformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PPlattformLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(combLedare, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combPlattformar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PPlattformLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbnTaBortPlattform)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbnLaggTillPlattform))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        PPlattformLayout.setVerticalGroup(
+            PPlattformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PPlattformLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(combLedare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap())
+                .addComponent(combPlattformar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PPlattformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbnLaggTillPlattform)
+                    .addComponent(jbnTaBortPlattform)))
         );
 
-        jButton2.setText("lägg till projekt");
+        javax.swing.GroupLayout PBakgrundLayout = new javax.swing.GroupLayout(PBakgrund);
+        PBakgrund.setLayout(PBakgrundLayout);
+        PBakgrundLayout.setHorizontalGroup(
+            PBakgrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PBakgrundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PBakgrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PBakgrundLayout.createSequentialGroup()
+                        .addGroup(PBakgrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PLedare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(PAnställd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PStartdatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PSlutdatum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PPlattform, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PBakgrundLayout.setVerticalGroup(
+            PBakgrundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PBakgrundLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PLedare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PAnställd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PStartdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PSlutdatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(PPlattform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Projektet du skapar"));
+        PBakgrund2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Projektet du skapar"));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Projekt Namn"));
+        PProjekt2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Projekt Namn"));
 
         lblprojektnamn.setText("<none>");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout PProjekt2Layout = new javax.swing.GroupLayout(PProjekt2);
+        PProjekt2.setLayout(PProjekt2Layout);
+        PProjekt2Layout.setHorizontalGroup(
+            PProjekt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PProjekt2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblprojektnamn)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addComponent(lblprojektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        PProjekt2Layout.setVerticalGroup(
+            PProjekt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PProjekt2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblprojektnamn)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ledare"));
+        PLedare2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ledare"));
 
-        jLabel2.setText("jLabel2");
+        lblLedare.setText("<none>");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout PLedare2Layout = new javax.swing.GroupLayout(PLedare2);
+        PLedare2.setLayout(PLedare2Layout);
+        PLedare2Layout.setHorizontalGroup(
+            PLedare2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PLedare2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblLedare)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        PLedare2Layout.setVerticalGroup(
+            PLedare2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PLedare2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblLedare)
                 .addContainerGap())
         );
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        PAnställd2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Anställda i projekt"));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jScrollPane1.setViewportView(jListAnstallda);
+
+        javax.swing.GroupLayout PAnställd2Layout = new javax.swing.GroupLayout(PAnställd2);
+        PAnställd2.setLayout(PAnställd2Layout);
+        PAnställd2Layout.setHorizontalGroup(
+            PAnställd2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PAnställd2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        PAnställd2Layout.setVerticalGroup(
+            PAnställd2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PAnställd2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
+        );
+
+        PStartdatum2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Startdatum projekt:"));
+
+        lblStartdatum.setText("<none>");
+
+        javax.swing.GroupLayout PStartdatum2Layout = new javax.swing.GroupLayout(PStartdatum2);
+        PStartdatum2.setLayout(PStartdatum2Layout);
+        PStartdatum2Layout.setHorizontalGroup(
+            PStartdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PStartdatum2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStartdatum)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        PStartdatum2Layout.setVerticalGroup(
+            PStartdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PStartdatum2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStartdatum)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PSlutdatum2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Slutdatum Projekt:"));
+
+        lblSlutdatum.setText("<none>");
+
+        javax.swing.GroupLayout PSlutdatum2Layout = new javax.swing.GroupLayout(PSlutdatum2);
+        PSlutdatum2.setLayout(PSlutdatum2Layout);
+        PSlutdatum2Layout.setHorizontalGroup(
+            PSlutdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PSlutdatum2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSlutdatum)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PSlutdatum2Layout.setVerticalGroup(
+            PSlutdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PSlutdatum2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblSlutdatum)
+                .addContainerGap())
+        );
+
+        PPlattformar2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Plattformar "));
+
+        jScrollPane2.setViewportView(jListPlattformar);
+
+        javax.swing.GroupLayout PPlattformar2Layout = new javax.swing.GroupLayout(PPlattformar2);
+        PPlattformar2.setLayout(PPlattformar2Layout);
+        PPlattformar2Layout.setHorizontalGroup(
+            PPlattformar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PPlattformar2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        PPlattformar2Layout.setVerticalGroup(
+            PPlattformar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PPlattformar2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout PBakgrund2Layout = new javax.swing.GroupLayout(PBakgrund2);
+        PBakgrund2.setLayout(PBakgrund2Layout);
+        PBakgrund2Layout.setHorizontalGroup(
+            PBakgrund2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PBakgrund2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PBakgrund2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(PSlutdatum2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PStartdatum2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PLedare2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PAnställd2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PPlattformar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PProjekt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        PBakgrund2Layout.setVerticalGroup(
+            PBakgrund2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PBakgrund2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PProjekt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PLedare2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PAnställd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PStartdatum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(PSlutdatum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PPlattformar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jbnLaggTillProjekt.setText("lägg till projekt");
+        jbnLaggTillProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbnLaggTillProjektActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout forstapanelLayout = new javax.swing.GroupLayout(forstapanel);
         forstapanel.setLayout(forstapanelLayout);
         forstapanelLayout.setHorizontalGroup(
             forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(forstapanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PanelAnställd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(LabelÖverskrift)
-                        .addGroup(forstapanelLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(PBakgrund, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(PBakgrund2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(forstapanelLayout.createSequentialGroup()
+                .addComponent(LblÖverskrift)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, forstapanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbnLaggTillProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(343, 343, 343))
         );
         forstapanelLayout.setVerticalGroup(
             forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(forstapanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LabelÖverskrift)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(forstapanelLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(PanelAnställd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, Short.MAX_VALUE))
+                .addComponent(LblÖverskrift)
+                .addGap(25, 25, 25)
+                .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PBakgrund2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PBakgrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbnLaggTillProjekt)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,54 +587,152 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(26, 26, 26)
                 .addComponent(forstapanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(forstapanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void laggTillProjektNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillProjektNamnActionPerformed
+    private void jbnStartdatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnStartdatumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_laggTillProjektNamnActionPerformed
+    }//GEN-LAST:event_jbnStartdatumActionPerformed
+
+    private void jbnTabortAnstalldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnTabortAnstalldMouseClicked
+        // TODO add your handling code here:
+
+        DefaultListModel model = (DefaultListModel)jListAnstallda.getModel();
+        if(model.contains(combAnstalld.getSelectedItem().toString()))
+        {
+            JOptionPane.showMessageDialog(forstapanel, "Tog bort " + combAnstalld.getSelectedItem().toString());
+            model.removeElement(combAnstalld.getSelectedItem().toString());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Hen fanns inte med i projektet");
+        }
+
+    }//GEN-LAST:event_jbnTabortAnstalldMouseClicked
+
+    private void jbnLaggtillAnstalldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggtillAnstalldMouseClicked
+        // TODO add your handling code here:
+        if(combAnstalld.getSelectedItem().toString() == "<none>")
+        {
+            JOptionPane.showMessageDialog(null, "Välj en anställd att lägga till");
+            return;
+        }
+        DefaultListModel model = (DefaultListModel)jListAnstallda.getModel();
+        if(model.contains(combAnstalld.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(forstapanel, "Anställd redan tillagd");
+        }
+        else
+        {
+            model.addElement(combAnstalld.getSelectedItem().toString());
+        }
+
+    }//GEN-LAST:event_jbnLaggtillAnstalldMouseClicked
 
     private void combAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combAnstalldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combAnstalldActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    String matchning = laggTillProjektNamn.getText();
-     { 
-       DatabaseManager dbm = new DatabaseManager();
-       dbm.getSpelprojektnamnLista();
-       ArrayList<String> b = dbm.getSpelprojektnamnLista();
-        if(Valedering.emptyString(laggTillProjektNamn.getText()))
-            
+        String matchning = laggTillProjektNamn.getText();
+        {
+            DatabaseManager dbm = new DatabaseManager();
+            dbm.getSpelprojektnamnLista();
+            ArrayList<String> spelprojekt = dbm.getSpelprojektnamnLista();
+            if(Validering.emptyString(laggTillProjektNamn.getText()))
+
+            {
+                JOptionPane.showMessageDialog(null, "Saknas projektnamn");
+                return;
+            }
+
+            {
+                if(spelprojekt.contains(matchning))
                 {
-                    JOptionPane.showMessageDialog(null, "Saknas projektnamn");
-                   return;
+                    JOptionPane.showMessageDialog(null, "FÄÄÄÄÄÄÄÄL!");
+                    return;
+
                 }
-       
-        
-        {
-        if(b.contains(matchning))
-        {
-            JOptionPane.showMessageDialog(null, "FÄÄÄÄÄÄÄÄL!");
-            
+                lblprojektnamn.setText(laggTillProjektNamn.getText());
+            }
         }
-           lblprojektnamn.setText(laggTillProjektNamn.getText());
-     }
-     }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void laggTillProjektNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillProjektNamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_laggTillProjektNamnActionPerformed
+
+    private void jbnLaggTillProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnLaggTillProjektActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbnLaggTillProjektActionPerformed
+
+    private void jbnLaggTillLedareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillLedareMouseClicked
+        if (combLedare.getSelectedItem().toString() == "<none>")
+        {
+            JOptionPane.showMessageDialog(null, "Välj en ledare att leda projektet");
+            return;
+        }
+        lblLedare.setText(combLedare.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_jbnLaggTillLedareMouseClicked
+
+    private void jbnLaggTillPlattformMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillPlattformMouseClicked
+        if(combPlattformar.getSelectedItem().toString() == "<none>")
+        {
+            JOptionPane.showMessageDialog(null, "Välj en plattform att lägga till");
+            return;
+        }
+         DefaultListModel model = (DefaultListModel)jListPlattformar.getModel();
+        if(model.contains(combPlattformar.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(forstapanel, "Plattform redan tillagd");
+        }
+        else
+        {
+            model.addElement(combPlattformar.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_jbnLaggTillPlattformMouseClicked
+
+    private void jbnTaBortPlattformMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnTaBortPlattformMouseClicked
+        // TODO add your handling code here:
+
+        DefaultListModel model = (DefaultListModel)jListPlattformar.getModel();
+        if(model.contains(combPlattformar.getSelectedItem().toString()))
+        {
+            JOptionPane.showMessageDialog(forstapanel, "Tog bort " + combPlattformar.getSelectedItem().toString());
+            model.removeElement(combPlattformar.getSelectedItem().toString());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Projektet utvecklas inte på denna plattform nu");
+        }
+
+    }//GEN-LAST:event_jbnTaBortPlattformMouseClicked
+
+    private void jbnStartdatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnStartdatumMouseClicked
+        
+        String datum = combStartAr.getSelectedItem().toString()
+        + "-" + Hjalpklass.getManadsNummer(combStartManad.getSelectedItem().toString())
+        + "-" + combStartDag.getSelectedItem().toString();
+        lblStartdatum.setText(datum); 
+    }//GEN-LAST:event_jbnStartdatumMouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    String datum = combSlutAr.getSelectedItem().toString()
+        + "-" + Hjalpklass.getManadsNummer(combSlutManad.getSelectedItem().toString())
+        + "-" + combSlutDag.getSelectedItem().toString();
+        lblSlutdatum.setText(datum); 
+    }//GEN-LAST:event_jButton5MouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -367,24 +770,49 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelÖverskrift;
-    private javax.swing.JPanel PanelAnställd;
+    private javax.swing.JLabel LblÖverskrift;
+    private javax.swing.JPanel PAnställd;
+    private javax.swing.JPanel PAnställd2;
+    private javax.swing.JPanel PBakgrund;
+    private javax.swing.JPanel PBakgrund2;
+    private javax.swing.JPanel PLedare;
+    private javax.swing.JPanel PLedare2;
+    private javax.swing.JPanel PPlattform;
+    private javax.swing.JPanel PPlattformar2;
+    private javax.swing.JPanel PProjekt;
+    private javax.swing.JPanel PProjekt2;
+    private javax.swing.JPanel PSlutdatum;
+    private javax.swing.JPanel PSlutdatum2;
+    private javax.swing.JPanel PStartdatum;
+    private javax.swing.JPanel PStartdatum2;
     private javax.swing.JComboBox combAnstalld;
     private javax.swing.JComboBox combLedare;
+    private javax.swing.JComboBox combPlattformar;
+    private javax.swing.JComboBox combSlutAr;
+    private javax.swing.JComboBox combSlutDag;
+    private javax.swing.JComboBox combSlutManad;
+    private javax.swing.JComboBox combStartAr;
+    private javax.swing.JComboBox combStartDag;
+    private javax.swing.JComboBox combStartManad;
     private javax.swing.JPanel forstapanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JList jListAnstallda;
+    private javax.swing.JList jListPlattformar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbnLaggTillLedare;
+    private javax.swing.JButton jbnLaggTillPlattform;
+    private javax.swing.JButton jbnLaggTillProjekt;
+    private javax.swing.JButton jbnLaggtillAnstalld;
+    private javax.swing.JButton jbnStartdatum;
+    private javax.swing.JButton jbnTaBortPlattform;
+    private javax.swing.JButton jbnTabortAnstalld;
     private javax.swing.JTextField laggTillProjektNamn;
+    private javax.swing.JLabel lblLedare;
+    private javax.swing.JLabel lblProjektNamn;
+    private javax.swing.JLabel lblSlutdatum;
+    private javax.swing.JLabel lblStartdatum;
     private javax.swing.JLabel lblprojektnamn;
     // End of variables declaration//GEN-END:variables
 
@@ -392,18 +820,71 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     
     DatabaseManager dbm = new DatabaseManager();
         
-        FyllcomboboxMetoder.fyllVilkenComboSomHelst(combAnstalld, dbm.getAnstalldLista());
+        Hjalpklass.fyllVilkenComboSomHelst(combAnstalld, dbm.getAnstalldLista());
         
         combAnstalld.insertItemAt("<none>", 0);
         combAnstalld.setSelectedIndex(0);
     }
 
-    private void fyllCombLedare() {
+    private void fyllCombLedare()
+    {
         DatabaseManager dbm = new DatabaseManager();
         
-        FyllcomboboxMetoder.fyllVilkenComboSomHelst(combLedare, dbm.getLedareLista());
+        Hjalpklass.fyllVilkenComboSomHelst(combLedare, dbm.getLedareLista());
         
         combLedare.insertItemAt("<none>", 0);
         combLedare.setSelectedIndex(0);
     }
+    private void fyllCombPlattformar()
+    {
+        DatabaseManager dbm = new DatabaseManager();
+        
+        Hjalpklass.fyllVilkenComboSomHelst(combPlattformar, dbm.getPlattformlista());
+        
+        combPlattformar.insertItemAt("<none>", 0);
+        combPlattformar.setSelectedIndex(0);
+    }
+    private void setAnstalldlistor() {
+    {
+        
+        jListAnstallda.setModel(new DefaultListModel());
+        jListPlattformar.setModel(new DefaultListModel());
+    } 
+ 
+    }
+
+    private void fyllDatumBoxar() {
+        
+        Hjalpklass.fyllAr(combStartAr, 2006, 2025);
+        Hjalpklass.fyllManader(combStartManad);
+        Hjalpklass.fyllDagar(combStartDag, "Jan");
+        
+        Hjalpklass.fyllAr(combSlutAr, 2006, 2025);
+        Hjalpklass.fyllManader(combSlutManad);
+        Hjalpklass.fyllDagar(combSlutDag, "Jan");
+        
+    }
+
+    private void addItemListenersForDateCombos() {
+        
+        combStartManad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                fyllAntalDagar(evt);
+            }
+
+            private void fyllAntalDagar(ItemEvent evt) {
+                Hjalpklass.fyllDagar(combStartDag, combStartManad.getSelectedItem().toString());
+            }
+        });
+        combSlutManad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                fyllAntalDagar(evt);
+            }
+
+            private void fyllAntalDagar(ItemEvent evt) {
+                Hjalpklass.fyllDagar(combSlutDag, combSlutManad.getSelectedItem().toString());
+            }
+        });
+    }
+
 }

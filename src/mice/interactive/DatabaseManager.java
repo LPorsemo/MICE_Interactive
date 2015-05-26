@@ -29,7 +29,30 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public void insert(String query)
+    {
+        try {
+            database.insert(query);
+        } catch (InfException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void delete(String query)
+    {
+        try {
+            database.delete(query);
+        } catch (InfException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void update(String query)
+    {
+        try {
+            database.update(query);
+        } catch (InfException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public ArrayList<String> getAnstalldLista()
     {
         ArrayList<HashMap<String,String>> anstalldLista = new ArrayList<>();
@@ -45,7 +68,7 @@ public class DatabaseManager {
                 listan.add(enAnstalld);
             }
         } catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         return listan;
     }
@@ -83,5 +106,33 @@ public class DatabaseManager {
         }
             return projektnamn;    
     }
-    
+      public ArrayList<String> getPlattformlista() {
+        ArrayList<String> plattformsnamn = new ArrayList<>();
+        String query = "select benamning from PLATTFORM";
+        try {
+
+            plattformsnamn = database.fetchColumn(query);
+
+        } catch (InfException ex) {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return plattformsnamn;
+    }
+        public ArrayList<String> getDomannamnlista() 
+        {
+            ArrayList<String> Domannamn = new ArrayList<>();
+            String query = "select beteckning from KOMPETENSDOMAN";
+            try 
+            {
+                Domannamn = database.fetchColumn(query);
+            } 
+            catch (InfException ex) 
+            {
+                Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        return Domannamn;
+}
+
 }

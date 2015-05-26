@@ -9,10 +9,11 @@ package mice.interactive;
  *
  * @author pemo
  */
-public class Valedering {
+public class Validering {
     
     
      public static boolean emptyString(String s) {
+         
         if (s == null || s.isEmpty()) {
             return true;
         }
