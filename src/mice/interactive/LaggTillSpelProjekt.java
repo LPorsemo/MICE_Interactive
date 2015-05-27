@@ -763,7 +763,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
           ProjektLedare = lblLedare.getText();
           String anvnamn = ProjektLedare.substring((ProjektLedare.indexOf("(") + 1),
           ProjektLedare.indexOf(")"));
-          ProjektLedare = konverteraTillAid(anvnamn);
+          ProjektLedare = dbManager.konverteraTillAid(anvnamn);
           
         }
         
@@ -821,6 +821,13 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
         }
+        ArrayList<String> anvNamn = new ArrayList<>();
+        jListAnstallda.getModel();
+        {
+            
+        }//for each element in model
+        //anvNamn.add(elementet, alltså namnet)
+        //ropa pa dbManager och skicka in listan + SID som du har ovan i laggtillarbetaremetoden
          
     }//GEN-LAST:event_jbnLaggTillProjektMouseClicked
     
@@ -978,22 +985,5 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         });
     }
     
-    private String konverteraTillAid(String anvNamn)
-    {
-        
-        String aid = "";
-        
-       
-        String query = "SELECT AID FROM ANSTALLD WHERE ANVNAMN = '" + anvNamn + "'";
-        try{
-            aid = databasen.fetchSingle(query);
-        }
-        catch(InfException ex)
-        {
-            System.out.println("BLÄV FÄL!");
-        }
-        
-        
-        return aid;
-    }
+
 }

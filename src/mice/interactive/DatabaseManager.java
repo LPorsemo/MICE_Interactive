@@ -29,12 +29,14 @@ public class DatabaseManager {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void insert(String query)
+    public boolean insert(String query)
     {
         try {
             database.insert(query);
+            return true;
         } catch (InfException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
     public void delete(String query)
@@ -179,5 +181,38 @@ public class DatabaseManager {
         {
             Logger.getLogger(AndraProjekt.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void laggTillArbetareIProjekt(ArrayList<String> anvNamn, String spel)
+           
+    {
+        for(String namn : anvNamn)
+        {
+            String aid = konverteraTillAid(namn);
+            String query = "Insert into arbetar_i values ('" + aid + "', '" + spel + "');"; 
+            if(!insert(query))
+            {
+                break;
+            }
+        }
+    }   
+    
+    public String konverteraTillAid(String anvNamn)
+    {
+        
+        String aid = "";
+        
+       
+        String query = "SELECT AID FROM ANSTALLD WHERE ANVNAMN = '" + anvNamn + "'";
+        try{
+            aid = database.fetchSingle(query);
+        }
+        catch(InfException ex)
+        {
+            System.out.println("BLÄV FÄL!");
+        }
+        
+        
+        return aid;
     }
 }
