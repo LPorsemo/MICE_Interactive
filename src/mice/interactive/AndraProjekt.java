@@ -35,7 +35,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         }
         initComponents();
         setFyllProject();
-        fyllAnstalld2();
+        fyllAnstalld();
         fyllLedare();
         fyllDatumBoxar();
         addItemListenersForDateCombos();
@@ -566,7 +566,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         catch (InfException ex)
         {
         }
-        setProjectlist();
+        setAnstalldaIProjekt();
         }
         
         else
@@ -622,7 +622,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         catch (InfException ex)
         {
         }
-        setPlattformList();
+        setAnstalldaIProjekt();
 
     }//GEN-LAST:event_jbnLäggTillAnställdActionPerformed
 
@@ -641,13 +641,7 @@ public class AndraProjekt extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Du bör nog välja en ledare som inte redan är ledare för projektet");
             return;
         }
-        if(lblProjectLeaderName.getText().equals("<none>"))
-        
-        
-        {
-            JOptionPane.showMessageDialog(null, "Välj ett projekt som du kan sätta en ledare för");
-            return;
-        }
+       
         String valdledare = combSetLeader.getSelectedItem().toString();
         String anvnamn = valdledare.substring((valdledare.indexOf("(") + 1),
             valdledare.indexOf(")"));
@@ -685,6 +679,20 @@ public class AndraProjekt extends javax.swing.JFrame {
         + "-" + Hjalpklass.getManadsNummer(combSlutManad.getSelectedItem().toString())
         + "-" + combSlutDag.getSelectedItem().toString();
         lblSlutdatum.setText(datum); 
+        String Startdatum = "";
+        if(lblStartdatum.getText() != null || lblStartdatum.getText() != "none" )
+        {
+            Startdatum = lblStartdatum.getText();
+        }
+        String Slutdatum = lblSlutdatum.getText();
+        
+        if(Validering.jamforStartvsSlutDatum(Startdatum, Slutdatum))
+
+            {
+                JOptionPane.showMessageDialog(null, "Projektet kan inte sluta innan det startar");
+                return;
+            }
+        
         String spel = combChangeProject.getSelectedItem().toString();
         String query = "UPDATE SPELPROJEKT SET RELEASEDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
         try {
@@ -923,26 +931,7 @@ public class AndraProjekt extends javax.swing.JFrame {
         combPlattformar.setSelectedIndex(0);
     }
     
-    private void fyllAnstalld() 
-    {
-       String query = "SELECT ANSTALLD.NAMN, ANSTALLD.ANVNAMN FROM ANSTALLD ORDER BY NAMN ASC";
-        try {
-            
-            combAndraAnstalld.removeAllItems();
-            ArrayList<HashMap<String,String>> anstalldLista = new ArrayList<>();
-            anstalldLista = databasen.fetchRows(query);
-            combAndraAnstalld.addItem("<none>");
-            for(HashMap<String,String> anstalld : anstalldLista)
-            {
-                
-                String enAnstalld = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
-                combAndraAnstalld.addItem(enAnstalld);
-            }
-        } catch (InfException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        }
-    }
-        private void fyllAnstalld2() {
+        private void fyllAnstalld() {
         
             
         DatabaseManager dbm = new DatabaseManager();
@@ -958,10 +947,11 @@ public class AndraProjekt extends javax.swing.JFrame {
     {
         jListProjektJobbare.setModel(new DefaultListModel());
         jListPlattformar.setModel(new DefaultListModel());
+        
        if( setProjectNamelabel())
        {
          setProjectLeaderName();
-         setProjectlist();
+         setAnstalldaIProjekt();
          setPlattformList();
          setProjectStartdate();
          setProjectEnddate();
@@ -994,6 +984,7 @@ public class AndraProjekt extends javax.swing.JFrame {
 
     private void setProjectLeaderName() 
     {
+        
         try {
             String spelprojekt = combChangeProject.getSelectedItem().toString();
             String query = "SELECT ANSTALLD.NAMN FROM PROJEKTLEDARE " +
@@ -1002,15 +993,19 @@ public class AndraProjekt extends javax.swing.JFrame {
                     + "WHERE SPELPROJEKT.BETECKNING = '" + spelprojekt + "'";
             
             String ledare = databasen.fetchSingle(query);
-            if(ledare != null){
-            lblProjectLeaderName.setText(ledare);
+            if(ledare == null)
+            {
+                lblProjectLeaderName.setText("<none>");
             }
-            
+            else
+            {
+                lblProjectLeaderName.setText(ledare);
+            }
         } catch (InfException ex) {
         }
     }
 
-    private void setProjectlist() 
+    private void setAnstalldaIProjekt() 
     {
     try {
         DefaultListModel DLM = new DefaultListModel();
@@ -1020,17 +1015,26 @@ public class AndraProjekt extends javax.swing.JFrame {
                      + "WHERE SPELPROJEKT.BETECKNING = '" + spelprojekt + "'";
             ArrayList<HashMap<String,String>> anstallda = new ArrayList<>();
             anstallda = databasen.fetchRows(query);
-            for(HashMap<String,String> anstalld : anstallda)
+            if(anstallda != null)
             {
-               String enAnstalld = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
-               DLM.addElement(enAnstalld);
+                for(HashMap<String,String> anstalld : anstallda)
+                {
+                    String enAnstalld = anstalld.get("NAMN")+ " (" + anstalld.get("ANVNAMN") + ")";
+                    DLM.addElement(enAnstalld);
+                }
+            
+            
+            
             }
             jListProjektJobbare.setModel(DLM);
-        } 
-    catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
-        }
 
+        }
+        catch (InfException ex) 
+                {
+                JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
+                }
+            
+        
     }
     private void setPlattformList()
     {
@@ -1043,12 +1047,20 @@ public class AndraProjekt extends javax.swing.JFrame {
         + " WHERE INNEFATTAR.SID = (SELECT SID FROM SPELPROJEKT WHERE BETECKNING = '" + spelprojekt + "');";
             ArrayList<String> plattformar = new ArrayList<>();
             plattformar = databasen.fetchColumn(query);
-            for (String plattform : plattformar)
+            if(plattformar != null)
             {
-                
-                DLM.addElement(plattform);
-            }
+                for (String plattform : plattformar)
+                {
+                    DLM.addElement(plattform);
+                }
+            
             jListPlattformar.setModel(DLM);
+            }
+            else
+            {
+                jListPlattformar.setModel(DLM);
+                setProjectStartdate();
+            }
         } 
     catch (InfException ex) {
             JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
@@ -1110,12 +1122,16 @@ public class AndraProjekt extends javax.swing.JFrame {
             if(datum != null){
             lblStartdatum.setText(datum);
             }
-            
+            else
+            {
+                lblStartdatum.setText("<none>");
+            }
         } catch (InfException ex) {
         }
     }
 
     private void setProjectEnddate() {
+        
         try {
             String spelprojekt = combChangeProject.getSelectedItem().toString();
             String query = "SELECT RELEASEDATUM FROM SPELPROJEKT"
@@ -1125,7 +1141,10 @@ public class AndraProjekt extends javax.swing.JFrame {
             if(datum != null){
             lblSlutdatum.setText(datum);
             }
-            
+            else
+            {
+                lblSlutdatum.setText("<none>");
+            }
         } catch (InfException ex) {
         }
     }

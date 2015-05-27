@@ -740,7 +740,12 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             return;
         }
         
-        String ProjektNamn = lblprojektnamn.getText();
+        if(dbm.getSpelprojektnamnLista().contains(lblprojektnamn.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Projektet finns redan i databas");
+            return;
+        }
+        String ProjektNamn = "'" + lblprojektnamn.getText() + "'";
         String ProjektStart = "";
         String ProjektLedare = "";
         String ProjektSlut = "";
@@ -748,7 +753,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         if(lblLedare.getText() == "<none>")
         
         {
-          ProjektLedare = null;
+          ProjektLedare = "null";
         }
         else
         {
@@ -760,25 +765,34 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         }
         if(lblStartdatum.getText() == "<none>")
         {
-            ProjektStart = null;
+            ProjektStart = "null";
         }
         else
         {
-            ProjektStart = lblStartdatum.getText();
+            ProjektStart = "'" + lblStartdatum.getText() + "'";
             
         }
         if(lblSlutdatum.getText() == "<none>")
         {
-            ProjektSlut = null;
+            ProjektSlut = "null";
         }
         else
         {
-            ProjektSlut = lblSlutdatum.getText();
+            ProjektSlut = "'" + lblSlutdatum.getText() + "'";
         }
-        int Sid = dbm.getNyttSid();
-        int Aid = Integer.parseInt(ProjektLedare);
         
-        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", '" + ProjektNamn + "', '" + ProjektStart + "', '" + ProjektSlut + "'," + Aid + ")";        
+        int Sid = dbm.getNyttSid();
+        Integer Aid = 0;
+        if (ProjektLedare != "null")
+        {
+            Aid = Integer.parseInt(ProjektLedare);
+        }
+        else
+        {
+            Aid = null;
+        }
+        
+        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", " + ProjektNamn + ", " + ProjektStart + ", " + ProjektSlut + ", " + Aid + ")";        
          try {
             databasen.insert(query);
         }
