@@ -27,13 +27,14 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
      * Creates new form LaggTillProjekt2
      */
     private InfDB databasen;
+    private DatabaseManager dbManager;
     public LaggTillSpelProjekt() {
          
     /**
      * Creates new form laggTillProjekt
      */
     
-        
+        dbManager = new DatabaseManager();
         try 
         {
             databasen = new InfDB("C:\\Program Files\\databasen\\MICEDB.FDB");
@@ -84,7 +85,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         combStartManad = new javax.swing.JComboBox();
         combStartDag = new javax.swing.JComboBox();
         PSlutdatum = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        jbnSlutdatum = new javax.swing.JButton();
         combSlutAr = new javax.swing.JComboBox();
         combSlutManad = new javax.swing.JComboBox();
         combSlutDag = new javax.swing.JComboBox();
@@ -276,10 +277,10 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
         PSlutdatum.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Slutdatum"));
 
-        jButton5.setText("Lägg till");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbnSlutdatum.setText("Lägg till");
+        jbnSlutdatum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                jbnSlutdatumMouseClicked(evt);
             }
         });
 
@@ -300,13 +301,13 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combSlutDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                .addComponent(jbnSlutdatum))
         );
         PSlutdatumLayout.setVerticalGroup(
             PSlutdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PSlutdatumLayout.createSequentialGroup()
                 .addGap(0, 13, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                .addComponent(jbnSlutdatum))
             .addGroup(PSlutdatumLayout.createSequentialGroup()
                 .addGroup(PSlutdatumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(combSlutAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -651,9 +652,9 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String matchning = laggTillProjektNamn.getText();
         {
-            DatabaseManager dbm = new DatabaseManager();
-            dbm.getSpelprojektnamnLista();
-            ArrayList<String> spelprojekt = dbm.getSpelprojektnamnLista();
+            
+            dbManager.getSpelprojektnamnLista();
+            ArrayList<String> spelprojekt = dbManager.getSpelprojektnamnLista();
             if(Validering.emptyString(laggTillProjektNamn.getText()))
 
             {
@@ -717,22 +718,24 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
     private void jbnStartdatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnStartdatumMouseClicked
         
-        String datum = combStartAr.getSelectedItem().toString()
+        String StartDatum = combStartAr.getSelectedItem().toString()
         + "-" + Hjalpklass.getManadsNummer(combStartManad.getSelectedItem().toString())
         + "-" + combStartDag.getSelectedItem().toString();
-        lblStartdatum.setText(datum); 
+        lblStartdatum.setText(StartDatum); 
     }//GEN-LAST:event_jbnStartdatumMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-    String datum = combSlutAr.getSelectedItem().toString()
+    private void jbnSlutdatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSlutdatumMouseClicked
+    
+        String slutDatum = combSlutAr.getSelectedItem().toString()
         + "-" + Hjalpklass.getManadsNummer(combSlutManad.getSelectedItem().toString())
         + "-" + combSlutDag.getSelectedItem().toString();
-        lblSlutdatum.setText(datum); 
-    }//GEN-LAST:event_jButton5MouseClicked
+                
+       lblSlutdatum.setText(slutDatum);
+    }//GEN-LAST:event_jbnSlutdatumMouseClicked
 
     private void jbnLaggTillProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillProjektMouseClicked
         // TODO add your handling code here:
-        DatabaseManager dbm = new DatabaseManager();
+        
         if(lblprojektnamn.getText() == "<none>")
 
         {
@@ -740,7 +743,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             return;
         }
         
-        if(dbm.getSpelprojektnamnLista().contains(lblprojektnamn.getText()))
+        if(dbManager.getSpelprojektnamnLista().contains(lblprojektnamn.getText()))
         {
             JOptionPane.showMessageDialog(null, "Projektet finns redan i databas");
             return;
@@ -763,6 +766,8 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
           ProjektLedare = konverteraTillAid(anvnamn);
           
         }
+        
+        
         if(lblStartdatum.getText() == "<none>")
         {
             ProjektStart = "null";
@@ -781,7 +786,23 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             ProjektSlut = "'" + lblSlutdatum.getText() + "'";
         }
         
-        int Sid = dbm.getNyttSid();
+        if(!ProjektStart.equals("null") && !ProjektSlut.equals("null"))
+        {
+            String startDatum = ProjektStart.replace("'", "");
+            String slutDatum = ProjektSlut.replace("'", "");
+//            String startDatum = ProjektStart.substring((ProjektStart.indexOf("'") +1), ProjektStart.indexOf("'"));
+//            String slutDatum = ProjektSlut.substring((ProjektSlut.indexOf("'") +1), ProjektSlut.indexOf("'"));
+            if(
+                    Validering.jamforStartvsSlutDatum(startDatum, slutDatum))
+
+                {
+                    
+                    JOptionPane.showMessageDialog(null, "Projektet kan inte sluta innan det startar");
+                    return;
+                }
+        }
+        
+        int Sid = dbManager.getNyttSid();
         Integer Aid = 0;
         if (ProjektLedare != "null")
         {
@@ -792,7 +813,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             Aid = null;
         }
         
-        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", " + ProjektNamn + ", " + ProjektStart + ", " + ProjektSlut + ", " + Aid + ")";        
+        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", " + ProjektNamn + ", " + ProjektStart + "', " + ProjektSlut + ", " + Aid + ")";        
          try {
             databasen.insert(query);
         }
@@ -866,7 +887,6 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private javax.swing.JComboBox combStartManad;
     private javax.swing.JPanel forstapanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JList jListAnstallda;
     private javax.swing.JList jListPlattformar;
     private javax.swing.JScrollPane jScrollPane1;
@@ -875,6 +895,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private javax.swing.JButton jbnLaggTillPlattform;
     private javax.swing.JButton jbnLaggTillProjekt;
     private javax.swing.JButton jbnLaggtillAnstalld;
+    private javax.swing.JButton jbnSlutdatum;
     private javax.swing.JButton jbnStartdatum;
     private javax.swing.JButton jbnTaBortPlattform;
     private javax.swing.JButton jbnTabortAnstalld;
@@ -888,9 +909,9 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
     private void fyllCombAnstalld() {
     
-    DatabaseManager dbm = new DatabaseManager();
+    
         
-        Hjalpklass.fyllVilkenComboSomHelst(combAnstalld, dbm.getAnstalldLista());
+        Hjalpklass.fyllVilkenComboSomHelst(combAnstalld, dbManager.getAnstalldLista());
         
         combAnstalld.insertItemAt("<none>", 0);
         combAnstalld.setSelectedIndex(0);
@@ -898,18 +919,18 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
     private void fyllCombLedare()
     {
-        DatabaseManager dbm = new DatabaseManager();
         
-        Hjalpklass.fyllVilkenComboSomHelst(combLedare, dbm.getLedareLista());
+        
+        Hjalpklass.fyllVilkenComboSomHelst(combLedare, dbManager.getLedareLista());
         
         combLedare.insertItemAt("<none>", 0);
         combLedare.setSelectedIndex(0);
     }
     private void fyllCombPlattformar()
     {
-        DatabaseManager dbm = new DatabaseManager();
         
-        Hjalpklass.fyllVilkenComboSomHelst(combPlattformar, dbm.getPlattformlista());
+        
+        Hjalpklass.fyllVilkenComboSomHelst(combPlattformar, dbManager.getPlattformlista());
         
         combPlattformar.insertItemAt("<none>", 0);
         combPlattformar.setSelectedIndex(0);
@@ -959,7 +980,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     
     private String konverteraTillAid(String anvNamn)
     {
-        DatabaseManager dbm = new DatabaseManager();
+        
         String aid = "";
         
        

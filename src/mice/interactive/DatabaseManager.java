@@ -158,5 +158,26 @@ public class DatabaseManager {
             
             
         }
-        
+    public void updateSlutDatum(String datum, String spel)
+    {
+        String query = "UPDATE SPELPROJEKT SET RELEASEDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
+        try {
+            database.update(query);
+        }
+        catch (InfException ex)
+        {
+            Logger.getLogger(AndraProjekt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void updateStartDatum(String datum, String spel)
+    {
+        String query = "UPDATE SPELPROJEKT SET STARTDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
+        try {
+            database.update(query);
+        }
+        catch (InfException ex)
+        {
+            Logger.getLogger(AndraProjekt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

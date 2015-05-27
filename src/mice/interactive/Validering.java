@@ -18,7 +18,8 @@ import java.util.logging.Logger;
 public class Validering {
     
     
-     public static boolean emptyString(String s) {
+     public static boolean emptyString(String s) 
+    {
          
         if (s == null || s.isEmpty()) {
             return true;
@@ -26,12 +27,14 @@ public class Validering {
         else {
             return false;
         }
-      }
+    }
     public static boolean jamforStartvsSlutDatum(String Startdatum, String Slutdatum)
     {
+    
         String dateString1 = Startdatum;
         String dateString2 = Slutdatum;
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
     
         try 
         {

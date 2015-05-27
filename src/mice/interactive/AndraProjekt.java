@@ -23,10 +23,13 @@ import oru.inf.InfException;
 public class AndraProjekt extends javax.swing.JFrame {
 
     private InfDB databasen;
+    private DatabaseManager dbManager;
     /**
      * Creates new form laggTillProjekt
      */
     public AndraProjekt() {
+        
+        dbManager = new DatabaseManager();
         try {
             databasen = new InfDB("C:\\Program Files\\databasen\\MICEDB.FDB");
        
@@ -659,50 +662,76 @@ public class AndraProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_jbnSattNyLedareActionPerformed
 
     private void jbnSattStartdatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSattStartdatumMouseClicked
-         String datum = combStartAr.getSelectedItem().toString()
+         String startDatum = combStartAr.getSelectedItem().toString()
         + "-" + Hjalpklass.getManadsNummer(combStartManad.getSelectedItem().toString())
         + "-" + combStartDag.getSelectedItem().toString();
-        lblStartdatum.setText(datum); 
-        String spel = combChangeProject.getSelectedItem().toString();
-        String query = "UPDATE SPELPROJEKT SET STARTDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
-        try {
-            databasen.update(query);
-             }
-         catch (InfException ex)
-            {
-            Logger.getLogger(AndraProjekt.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+         if(lblSlutdatum.getText() == null || lblSlutdatum.getText().equals("<none>"))
+        {
+            updateStartDatum(startDatum);
+        }
+        else
+        {
+            String slutDatum = lblSlutdatum.getText();
+            if(Validering.jamforStartvsSlutDatum(startDatum, slutDatum))
+
+                {
+                    JOptionPane.showMessageDialog(null, "Projektet kan inte sluta innan det startar");
+                    return;
+                }
+            updateStartDatum(startDatum);
+        }
+         
     }//GEN-LAST:event_jbnSattStartdatumMouseClicked
 
+    private void updateStartDatum(String datum) {
+
+        String spel = combChangeProject.getSelectedItem().toString();
+        if(spel.equals("Byt Projekt <inget valt>"))
+        {
+            JOptionPane.showMessageDialog(null, "Du har inte valt något projekt att sätta datum på");
+            return;
+        }    
+        dbManager.updateStartDatum(datum, spel);
+        lblStartdatum.setText(datum);
+    }
+    
     private void jbnSattSlutdatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSattSlutdatumMouseClicked
-      String datum = combSlutAr.getSelectedItem().toString()
+      String slutDatum = combSlutAr.getSelectedItem().toString()
         + "-" + Hjalpklass.getManadsNummer(combSlutManad.getSelectedItem().toString())
         + "-" + combSlutDag.getSelectedItem().toString();
-        lblSlutdatum.setText(datum); 
-        String Startdatum = "";
-        if(lblStartdatum.getText() != null || lblStartdatum.getText() != "none" )
-        {
-            Startdatum = lblStartdatum.getText();
-        }
-        String Slutdatum = lblSlutdatum.getText();
         
-        if(Validering.jamforStartvsSlutDatum(Startdatum, Slutdatum))
+        
+        if(lblStartdatum.getText() == null || lblStartdatum.getText().equals("<none>"))
+        {
+            updateSlutDatum(slutDatum);
+        }
+        else
+        {
+            String startDatum = lblStartdatum.getText();
+            if(Validering.jamforStartvsSlutDatum(startDatum, slutDatum))
 
-            {
-                JOptionPane.showMessageDialog(null, "Projektet kan inte sluta innan det startar");
-                return;
-            }
+                {
+                    JOptionPane.showMessageDialog(null, "Projektet kan inte sluta innan det startar");
+                    return;
+                }
+            updateSlutDatum(slutDatum);
+        }
+
+    }//GEN-LAST:event_jbnSattSlutdatumMouseClicked
+
+    private void updateSlutDatum(String datum) {
         
         String spel = combChangeProject.getSelectedItem().toString();
-        String query = "UPDATE SPELPROJEKT SET RELEASEDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
-        try {
-            databasen.update(query);
-             }
-         catch (InfException ex)
-            {
-            Logger.getLogger(AndraProjekt.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_jbnSattSlutdatumMouseClicked
+                if(spel.equals("Byt Projekt <inget valt>"))
+        {
+            JOptionPane.showMessageDialog(null, "Du har inte valt något projekt att sätta datum på");
+            return;
+        }    
+        
+        dbManager.updateSlutDatum(datum, spel);
+        lblSlutdatum.setText(datum);
+    }
 
     private void jbnLaggTillPlattformMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillPlattformMouseClicked
       
@@ -924,9 +953,9 @@ public class AndraProjekt extends javax.swing.JFrame {
     private void fyllPlattform()
     
     {
-        DatabaseManager dbm = new DatabaseManager();
+        
         combPlattformar.removeAllItems();
-        Hjalpklass.fyllVilkenComboSomHelst(combPlattformar, dbm.getPlattformlista());
+        Hjalpklass.fyllVilkenComboSomHelst(combPlattformar, dbManager.getPlattformlista());
         combPlattformar.insertItemAt("<none>", 0);
         combPlattformar.setSelectedIndex(0);
     }
@@ -934,9 +963,9 @@ public class AndraProjekt extends javax.swing.JFrame {
         private void fyllAnstalld() {
         
             
-        DatabaseManager dbm = new DatabaseManager();
         
-        Hjalpklass.fyllVilkenComboSomHelst(combAndraAnstalld, dbm.getAnstalldLista());
+        
+        Hjalpklass.fyllVilkenComboSomHelst(combAndraAnstalld, dbManager.getAnstalldLista());
         
         combAndraAnstalld.insertItemAt("<none>", 0);
         combAndraAnstalld.setSelectedIndex(0);
