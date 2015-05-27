@@ -9,9 +9,12 @@ import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
@@ -23,7 +26,24 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     /**
      * Creates new form LaggTillProjekt2
      */
+    private InfDB databasen;
     public LaggTillSpelProjekt() {
+         
+    /**
+     * Creates new form laggTillProjekt
+     */
+    
+        
+        try 
+        {
+            databasen = new InfDB("C:\\Program Files\\databasen\\MICEDB.FDB");
+       
+        } 
+        catch (InfException ex) 
+        {
+            Logger.getLogger(Sokpanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         initComponents();
         fyllCombAnstalld();
         fyllCombLedare();
@@ -97,12 +117,6 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         PBakgrund.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Lägg till projekt"));
 
         PProjekt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Nytt Projekt"));
-
-        laggTillProjektNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                laggTillProjektNamnActionPerformed(evt);
-            }
-        });
 
         lblProjektNamn.setText("Namn:");
 
@@ -225,11 +239,6 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         jbnStartdatum.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbnStartdatumMouseClicked(evt);
-            }
-        });
-        jbnStartdatum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbnStartdatumActionPerformed(evt);
             }
         });
 
@@ -545,9 +554,9 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         );
 
         jbnLaggTillProjekt.setText("lägg till projekt");
-        jbnLaggTillProjekt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbnLaggTillProjektActionPerformed(evt);
+        jbnLaggTillProjekt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnLaggTillProjektMouseClicked(evt);
             }
         });
 
@@ -600,10 +609,6 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbnStartdatumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnStartdatumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbnStartdatumActionPerformed
 
     private void jbnTabortAnstalldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnTabortAnstalldMouseClicked
         // TODO add your handling code here:
@@ -668,14 +673,6 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void laggTillProjektNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillProjektNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_laggTillProjektNamnActionPerformed
-
-    private void jbnLaggTillProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnLaggTillProjektActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbnLaggTillProjektActionPerformed
-
     private void jbnLaggTillLedareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillLedareMouseClicked
         if (combLedare.getSelectedItem().toString() == "<none>")
         {
@@ -732,6 +729,65 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         + "-" + combSlutDag.getSelectedItem().toString();
         lblSlutdatum.setText(datum); 
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jbnLaggTillProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillProjektMouseClicked
+        // TODO add your handling code here:
+        DatabaseManager dbm = new DatabaseManager();
+        if(lblprojektnamn.getText() == "<none>")
+
+        {
+            JOptionPane.showMessageDialog(null, "Saknas projektnamn");
+            return;
+        }
+        
+        String ProjektNamn = lblprojektnamn.getText();
+        String ProjektStart = "";
+        String ProjektLedare = "";
+        String ProjektSlut = "";
+        
+        if(lblLedare.getText() == "<none>")
+        
+        {
+          ProjektLedare = null;
+        }
+        else
+        {
+          ProjektLedare = lblLedare.getText();
+          String anvnamn = ProjektLedare.substring((ProjektLedare.indexOf("(") + 1),
+          ProjektLedare.indexOf(")"));
+          ProjektLedare = konverteraTillAid(anvnamn);
+          
+        }
+        if(lblStartdatum.getText() == "<none>")
+        {
+            ProjektStart = null;
+        }
+        else
+        {
+            ProjektStart = lblStartdatum.getText();
+            
+        }
+        if(lblSlutdatum.getText() == "<none>")
+        {
+            ProjektSlut = null;
+        }
+        else
+        {
+            ProjektSlut = lblSlutdatum.getText();
+        }
+        int Sid = dbm.getNyttSid();
+        int Aid = Integer.parseInt(ProjektLedare);
+        
+        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", '" + ProjektNamn + "', '" + ProjektStart + "', '" + ProjektSlut + "'," + Aid + ")";        
+         try {
+            databasen.insert(query);
+        }
+        catch (InfException ex)
+        {
+            JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
+        }
+         
+    }//GEN-LAST:event_jbnLaggTillProjektMouseClicked
     
     /**
      * @param args the command line arguments
@@ -886,5 +942,23 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    private String konverteraTillAid(String anvNamn)
+    {
+        DatabaseManager dbm = new DatabaseManager();
+        String aid = "";
+        
+       
+        String query = "SELECT AID FROM ANSTALLD WHERE ANVNAMN = '" + anvNamn + "'";
+        try{
+            aid = databasen.fetchSingle(query);
+        }
+        catch(InfException ex)
+        {
+            System.out.println("BLÄV FÄL!");
+        }
+        
+        
+        return aid;
+    }
 }

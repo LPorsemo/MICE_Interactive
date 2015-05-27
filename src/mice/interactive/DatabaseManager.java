@@ -106,7 +106,9 @@ public class DatabaseManager {
         }
             return projektnamn;    
     }
-      public ArrayList<String> getPlattformlista() {
+    
+    public ArrayList<String> getPlattformlista() 
+    {
         ArrayList<String> plattformsnamn = new ArrayList<>();
         String query = "select benamning from PLATTFORM";
         try {
@@ -119,20 +121,42 @@ public class DatabaseManager {
         }
         return plattformsnamn;
     }
-        public ArrayList<String> getDomannamnlista() 
+    
+    public ArrayList<String> getDomannamnlista() 
+    {
+    ArrayList<String> Domannamn = new ArrayList<>();
+    String query = "select beteckning from KOMPETENSDOMAN";
+    try 
+    {
+        Domannamn = database.fetchColumn(query);
+    } 
+    catch (InfException ex) 
+    {
+        Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            
+        return Domannamn;
+    }
+        
+        public int getNyttSid()
         {
-            ArrayList<String> Domannamn = new ArrayList<>();
-            String query = "select beteckning from KOMPETENSDOMAN";
-            try 
-            {
-                Domannamn = database.fetchColumn(query);
+            String maxSid = "";
+            String query = "SELECT MAX(SID) FROM SPELPROJEKT";
+            try
+            {        
+                maxSid = database.fetchSingle(query);
+               
             } 
             catch (InfException ex) 
             {
-                Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex); 
             
-        return Domannamn;
-}
-
+            }
+        int intMaxSid = Integer.parseInt(maxSid);
+        int nyttMaxSid = intMaxSid + 1;
+        return nyttMaxSid;
+            
+            
+        }
+        
 }
