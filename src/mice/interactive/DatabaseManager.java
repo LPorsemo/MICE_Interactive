@@ -127,7 +127,7 @@ public class DatabaseManager {
     public ArrayList<String> getDomannamnlista() 
     {
     ArrayList<String> Domannamn = new ArrayList<>();
-    String query = "select beteckning from KOMPETENSDOMAN";
+    String query = "select benamning from KOMPETENSDOMAN ORDER BY benamning ASC";
     try 
     {
         Domannamn = database.fetchColumn(query);
@@ -156,10 +156,52 @@ public class DatabaseManager {
             }
         int intMaxSid = Integer.parseInt(maxSid);
         int nyttMaxSid = intMaxSid + 1;
-        return nyttMaxSid;
-            
-            
+        return nyttMaxSid; 
         }
+        
+        public int getNyttAid()
+        {
+            String maxAid = "";
+            String query = "SELECT MAX(AID) FROM ANSTALLD";
+            try
+            {        
+                maxAid = database.fetchSingle(query);
+               
+
+                        
+            } 
+            catch (InfException ex) 
+            {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex); 
+            
+            }
+        int intMaxAid = Integer.parseInt(maxAid);
+        int nyttMaxAid = intMaxAid + 1;
+        return nyttMaxAid;
+        }
+        
+    public int getNyttKid()
+        {
+            String maxKid = "";
+            String query = "SELECT MAX(KID) FROM KOMPETENSDOMAN";
+            try
+            {        
+                maxKid = database.fetchSingle(query);
+               
+
+                        
+            } 
+            catch (InfException ex) 
+            {
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex); 
+            
+            }
+        int intMaxKid = Integer.parseInt(maxKid);
+        int nyttMaxKid = intMaxKid + 1;
+        return nyttMaxKid;
+        }
+        
+        
     public void updateSlutDatum(String datum, String spel)
     {
         String query = "UPDATE SPELPROJEKT SET RELEASEDATUM = '" + datum + "' where spelprojekt.beteckning = '" + spel + "';";
@@ -188,6 +230,7 @@ public class DatabaseManager {
     {
         for(String namn : anvNamn)
         {
+            namn = Hjalpklass.konverteraListItemTillAnvNamn(namn);
             String aid = konverteraTillAid(namn);
             String query = "Insert into arbetar_i values ('" + aid + "', '" + spel + "');"; 
             if(!insert(query))
@@ -196,7 +239,19 @@ public class DatabaseManager {
             }
         }
     }   
-    
+    public void laggTillKonsolIProjekt(ArrayList<String> spelKonsol, String spel)
+           
+    {
+        for(String namn : spelKonsol)
+        {
+            String pid = konverteraTillPid(namn);
+            String query = "Insert into INNEFATTAR values (" + spel + ", " + pid + ");"; 
+            if(!insert(query))
+            {
+                break;
+            }
+        }
+    }   
     public String konverteraTillAid(String anvNamn)
     {
         
@@ -214,5 +269,46 @@ public class DatabaseManager {
         
         
         return aid;
+        
     }
+     public String konverteraTillPid(String spelKonsol)
+    {
+        
+        String pid = "";
+        
+       
+        String query = "SELECT PID FROM PLATTFORM WHERE BENAMNING = '" + spelKonsol + "'";
+        try{
+            pid = database.fetchSingle(query);
+        }
+        catch(InfException ex)
+        {
+            System.out.println("BLÄV FÄL!");
+        }
+        
+        
+        return pid;
+        
+    }
+      public String konverteraTillKid(String domanNamn)
+    {
+        
+        String kid = "";
+        
+       
+        String query = "SELECT KID FROM KOMPETENSDOMAN WHERE BENAMNING = '" + domanNamn + "'";
+        try{
+            kid = database.fetchSingle(query);
+        }
+        catch(InfException ex)
+        {
+            System.out.println("BLÄV FÄL!");
+        }
+        
+        
+        return kid;
+        
+    }
+    
 }
+           

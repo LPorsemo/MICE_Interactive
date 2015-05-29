@@ -42,17 +42,17 @@ public class Hjalpklass {
     }
 
     public static JComboBox fyllVilkenComboSomHelst(JComboBox combobox, ArrayList<String> lista)
-{
+    {
     combobox.removeAllItems();
     
     
     for(String item : lista)
-    {
-        combobox.addItem(item);
-    }
+        {
+            combobox.addItem(item);
+        }
     return combobox;   
-}
-    
+    }
+  
     public static void fyllAr(JComboBox combobox, int startYear, int endYear)
     {
         combobox.removeAllItems();
@@ -92,6 +92,7 @@ public class Hjalpklass {
         }
         
     }
+    
     public static String getManadsNummer(String manad)
     {
        LinkedHashMap<String, Integer> dom = getManaderOchDagar();
@@ -109,5 +110,9 @@ public class Hjalpklass {
        }
        return manadsTal < 10 ? "0" + manadsTal.toString() : manadsTal.toString();
     }
-    
+    public static String konverteraListItemTillAnvNamn(String item)
+    {
+        return item.substring((item.indexOf("(") + 1),
+            item.indexOf(")"));
+    }
 }

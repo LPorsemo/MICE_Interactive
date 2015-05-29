@@ -71,7 +71,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         PProjekt = new javax.swing.JPanel();
         laggTillProjektNamn = new javax.swing.JTextField();
         lblProjektNamn = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbnLaggTill = new javax.swing.JButton();
         PLedare = new javax.swing.JPanel();
         combLedare = new javax.swing.JComboBox();
         jbnLaggTillLedare = new javax.swing.JButton();
@@ -121,10 +121,10 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
 
         lblProjektNamn.setText("Namn:");
 
-        jButton1.setText("lägg till");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbnLaggTill.setText("lägg till");
+        jbnLaggTill.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jbnLaggTillMouseClicked(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(jbnLaggTill))
         );
         PProjektLayout.setVerticalGroup(
             PProjektLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +151,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                             .addComponent(laggTillProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PProjektLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jbnLaggTill)
                         .addGap(21, 21, 21))))
         );
 
@@ -407,8 +407,8 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             PProjekt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PProjekt2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblprojektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addComponent(lblprojektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         PProjekt2Layout.setVerticalGroup(
             PProjekt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,7 +428,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             PLedare2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PLedare2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblLedare)
+                .addComponent(lblLedare, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PLedare2Layout.setVerticalGroup(
@@ -469,7 +469,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             PStartdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PStartdatum2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblStartdatum)
+                .addComponent(lblStartdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PStartdatum2Layout.setVerticalGroup(
@@ -490,7 +490,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             PSlutdatum2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PSlutdatum2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblSlutdatum)
+                .addComponent(lblSlutdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PSlutdatum2Layout.setVerticalGroup(
@@ -649,7 +649,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combAnstalldActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jbnLaggTillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillMouseClicked
         String matchning = laggTillProjektNamn.getText();
         {
             
@@ -672,7 +672,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                 lblprojektnamn.setText(laggTillProjektNamn.getText());
             }
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jbnLaggTillMouseClicked
 
     private void jbnLaggTillLedareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillLedareMouseClicked
         if (combLedare.getSelectedItem().toString() == "<none>")
@@ -736,7 +736,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private void jbnLaggTillProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillProjektMouseClicked
         // TODO add your handling code here:
         
-        if(lblprojektnamn.getText() == "<none>")
+        if("<none>".equals(lblprojektnamn.getText()))
 
         {
             JOptionPane.showMessageDialog(null, "Saknas projektnamn");
@@ -813,22 +813,34 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             Aid = null;
         }
         
-        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", " + ProjektNamn + ", " + ProjektStart + "', " + ProjektSlut + ", " + Aid + ")";        
+        String query = "Insert into SPELPROJEKT VALUES (" + Sid + ", " + ProjektNamn + ", " + ProjektStart + ", " + ProjektSlut + ", " + Aid + ")";        
          try {
             databasen.insert(query);
         }
         catch (InfException ex)
         {
-            JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "FEL!" + ex.getMessage());
         }
         ArrayList<String> anvNamn = new ArrayList<>();
-        jListAnstallda.getModel();
-        {
-            
-        }//for each element in model
-        //anvNamn.add(elementet, alltså namnet)
-        //ropa pa dbManager och skicka in listan + SID som du har ovan i laggtillarbetaremetoden
-         
+        DefaultListModel anstalld = (DefaultListModel)jListAnstallda.getModel();
+        
+            for(int i = 0; i < anstalld.size(); i++)
+            {
+                anvNamn.add(anstalld.getElementAt(i).toString());
+            }
+        String sid = Integer.toString(Sid);
+        dbManager.laggTillArbetareIProjekt(anvNamn, sid);
+        
+        ArrayList<String> spelKonsol = new ArrayList<>();
+        DefaultListModel konsol = (DefaultListModel)jListPlattformar.getModel();
+        
+            for(int i = 0; i < konsol.size(); i++)
+            {
+                spelKonsol.add(konsol.getElementAt(i).toString());
+            }
+        dbManager.laggTillKonsolIProjekt(spelKonsol, sid);
+        
+        JOptionPane.showMessageDialog(null, "Du har lagt till projektet " + lblprojektnamn.getText() );
     }//GEN-LAST:event_jbnLaggTillProjektMouseClicked
     
     /**
@@ -893,11 +905,11 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private javax.swing.JComboBox combStartDag;
     private javax.swing.JComboBox combStartManad;
     private javax.swing.JPanel forstapanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList jListAnstallda;
     private javax.swing.JList jListPlattformar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbnLaggTill;
     private javax.swing.JButton jbnLaggTillLedare;
     private javax.swing.JButton jbnLaggTillPlattform;
     private javax.swing.JButton jbnLaggTillProjekt;

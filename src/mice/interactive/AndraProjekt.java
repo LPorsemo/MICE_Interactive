@@ -553,12 +553,14 @@ public class AndraProjekt extends javax.swing.JFrame {
         }
         if (finnsI)
         {
-        String valdAnstalld = combAndraAnstalld.getSelectedItem().toString();
-        String anvnamn = valdAnstalld.substring((valdAnstalld.indexOf("(") + 1),
-            valdAnstalld.indexOf(")"));
+        String anvNamn = 
+                Hjalpklass.konverteraListItemTillAnvNamn(combAndraAnstalld.getSelectedItem().toString());
+        
+//        String anvnamn = valdAnstalld.substring((valdAnstalld.indexOf("(") + 1),
+//            valdAnstalld.indexOf(")"));
         String valtProjekt = combChangeProject.getSelectedItem().toString();
 
-        String aid = konverteraTillAid(anvnamn);
+        String aid = konverteraTillAid(anvNamn);
         String sid = konverteraTillSid(valtProjekt);
 
         String query = "delete from ARBETAR_I where AID =" + " '" + aid + "' and SID" + "= '" + sid + "';";
@@ -938,7 +940,7 @@ public class AndraProjekt extends javax.swing.JFrame {
             
             combSetLeader.removeAllItems();
             ArrayList<HashMap<String,String>> ledarLista = new ArrayList<>();
-           ledarLista = databasen.fetchRows(query);
+            ledarLista = databasen.fetchRows(query);
             combSetLeader.addItem("<Välj ny ledare>");
             for(HashMap<String,String> ledare : ledarLista)
             {
@@ -1092,7 +1094,7 @@ public class AndraProjekt extends javax.swing.JFrame {
             }
         } 
     catch (InfException ex) {
-            JOptionPane.showMessageDialog(null, "bajs!" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "fel!" + ex.getMessage());
         }
     }
     private String konverteraTillAid(String anvNamn)
