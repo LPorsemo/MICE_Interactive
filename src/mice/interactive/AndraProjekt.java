@@ -41,7 +41,6 @@ public class AndraProjekt extends javax.swing.JFrame {
         fyllAnstalld();
         fyllLedare();
         fyllDatumBoxar();
-        addItemListenersForDateCombos();
         fyllPlattform();
       
     }
@@ -55,10 +54,8 @@ public class AndraProjekt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
         Overpanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         ValjProjektPanel = new javax.swing.JPanel();
         combChangeProject = new javax.swing.JComboBox();
         ValtProjektPanel = new javax.swing.JPanel();
@@ -97,25 +94,18 @@ public class AndraProjekt extends javax.swing.JFrame {
         combPlattformar = new javax.swing.JComboBox();
         jbnTaBortProjekt = new javax.swing.JButton();
         jbnLaggTillPlattform = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jButton8.setText("jButton8");
-
-        jPasswordField1.setText("jPasswordField1");
+        jPanel7 = new javax.swing.JPanel();
+        jbnSystemMeny = new javax.swing.JButton();
+        jbnLäggTillProjekt = new javax.swing.JButton();
+        jbnVisaProjekt = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jbnSättNamn = new javax.swing.JButton();
+        txtProjektNamn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Overpanel.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Ändra Projekt"));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Uppdatera Projekt");
 
         ValjProjektPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj projekt"));
 
@@ -137,10 +127,10 @@ public class AndraProjekt extends javax.swing.JFrame {
         );
         ValjProjektPanelLayout.setVerticalGroup(
             ValjProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ValjProjektPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ValjProjektPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(combChangeProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ValtProjektPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Valt Projekt"));
@@ -233,7 +223,7 @@ public class AndraProjekt extends javax.swing.JFrame {
                                 .addComponent(lblStartdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ValtProjektPanelLayout.setVerticalGroup(
             ValtProjektPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +276,7 @@ public class AndraProjekt extends javax.swing.JFrame {
             ValjAnstalldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ValjAnstalldPanelLayout.createSequentialGroup()
                 .addComponent(combAndraAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbnLäggTillAnställd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbnTaBortAnstalld))
@@ -304,7 +294,7 @@ public class AndraProjekt extends javax.swing.JFrame {
                     .addComponent(jbnLäggTillAnställd)))
         );
 
-        SattLedarePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt ledare"));
+        SattLedarePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj ledare"));
 
         combSetLeader.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -335,11 +325,16 @@ public class AndraProjekt extends javax.swing.JFrame {
                 .addComponent(jbnSattNyLedare))
         );
 
-        SattDatumPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Startdatum"));
+        SattDatumPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj Startdatum"));
 
         combStartAr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         combStartManad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combStartManad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combStartManadItemStateChanged(evt);
+            }
+        });
 
         combStartDag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -378,11 +373,16 @@ public class AndraProjekt extends javax.swing.JFrame {
                 .addComponent(jbnSattStartdatum))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Slutdatum"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj Slutdatum"));
 
         combSlutAr.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         combSlutManad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combSlutManad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combSlutManadItemStateChanged(evt);
+            }
+        });
 
         combSlutDag.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -421,7 +421,7 @@ public class AndraProjekt extends javax.swing.JFrame {
                 .addComponent(jbnSattSlutdatum))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt Plattformar"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Välj Plattformar"));
 
         combPlattformar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -464,54 +464,147 @@ public class AndraProjekt extends javax.swing.JFrame {
                     .addComponent(jbnLaggTillPlattform)))
         );
 
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Gå till"));
+
+        jbnSystemMeny.setText("System meny");
+        jbnSystemMeny.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnSystemMenyMouseClicked(evt);
+            }
+        });
+
+        jbnLäggTillProjekt.setText("Lägg till projekt");
+        jbnLäggTillProjekt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnLäggTillProjektMouseClicked(evt);
+            }
+        });
+
+        jbnVisaProjekt.setText("Visa projekt");
+        jbnVisaProjekt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnVisaProjektMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jbnSystemMeny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbnLäggTillProjekt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbnVisaProjekt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbnSystemMeny)
+                    .addComponent(jbnLäggTillProjekt)
+                    .addComponent(jbnVisaProjekt))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sätt nytt projektnamn"));
+
+        jbnSättNamn.setText("Sätt Namn");
+        jbnSättNamn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnSättNamnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jbnSättNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbnSättNamn))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtProjektNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout OverpanelLayout = new javax.swing.GroupLayout(Overpanel);
         Overpanel.setLayout(OverpanelLayout);
         OverpanelLayout.setHorizontalGroup(
             OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OverpanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(OverpanelLayout.createSequentialGroup()
-                        .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SattDatumPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SattLedarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ValjAnstalldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(ValtProjektPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(ValtProjektPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(OverpanelLayout.createSequentialGroup()
+                        .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112))))
+            .addGroup(OverpanelLayout.createSequentialGroup()
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SattDatumPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SattLedarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ValjAnstalldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         OverpanelLayout.setVerticalGroup(
             OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OverpanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ValtProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(SattDatumPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SattLedarePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(OverpanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(ValjProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(OverpanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1)))
+                .addGap(40, 40, 40)
+                .addComponent(ValtProjektPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SattLedarePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ValjAnstalldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SattDatumPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(OverpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(Overpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,7 +633,6 @@ public class AndraProjekt extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Välj en anställd att ta bort");
             return;
         }
-        
         boolean finnsI = false;
         ListModel model = jListProjektJobbare.getModel();
         for( int i = 0; i < model.getSize(); i++)
@@ -833,6 +925,83 @@ public class AndraProjekt extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbnTaBortProjektMouseClicked
 
+    private void combStartManadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combStartManadItemStateChanged
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            Hjalpklass.fyllDagar(combStartDag, combStartManad.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_combStartManadItemStateChanged
+
+    private void combSlutManadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combSlutManadItemStateChanged
+        if(evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            Hjalpklass.fyllDagar(combSlutDag, combSlutManad.getSelectedItem().toString());
+        }
+        
+    }//GEN-LAST:event_combSlutManadItemStateChanged
+
+    private void jbnSystemMenyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSystemMenyMouseClicked
+        // TODO add your handling code here:
+        Inloggad InloggadFrame = new Inloggad(); 
+        InloggadFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbnSystemMenyMouseClicked
+
+    private void jbnLäggTillProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLäggTillProjektMouseClicked
+        // TODO add your handling code here:
+        LaggTillSpelProjekt LaggTillSpelProjektFrame = new LaggTillSpelProjekt();
+        LaggTillSpelProjektFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbnLäggTillProjektMouseClicked
+
+    private void jbnSättNamnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSättNamnMouseClicked
+        // TODO add your handling code here:
+        String matchning = txtProjektNamn.getText();
+        {
+            
+            dbManager.getSpelprojektnamnLista();
+            ArrayList<String> spelprojekt = dbManager.getSpelprojektnamnLista();
+            if(Validering.emptyString(txtProjektNamn.getText()))
+
+            {
+                JOptionPane.showMessageDialog(null, "Saknas projektnamn");
+                return;
+            }
+            
+             if(spelprojekt.contains(matchning) && LblProjektNamn.getText().equals("<none>"))
+            {
+
+                JOptionPane.showMessageDialog(null, "Finns redan ett Projekt med det namnet");
+                return;
+            }
+           
+            if(spelprojekt.contains(matchning))
+            {
+                JOptionPane.showMessageDialog(null, "Döp om projektet om du ska uppdatera det");
+                return;
+
+            }
+            if(LblProjektNamn.getText().equals("<none>"))
+            {
+                JOptionPane.showMessageDialog(null, "Välj ett Projekt att ändra namn på");
+                return;
+            }
+            String Namn = dbManager.konverteraTillSid(LblProjektNamn.getText());
+            dbManager.setNyttProjektNamn(matchning, Namn);
+            LblProjektNamn.setText(txtProjektNamn.getText());
+            AndraProjekt AndraProjektFrame = new AndraProjekt(); 
+            AndraProjektFrame.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jbnSättNamnMouseClicked
+
+    private void jbnVisaProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnVisaProjektMouseClicked
+        // TODO add your handling code here:
+        VisaProjekt VisaProjektFrame = new VisaProjekt();
+        VisaProjektFrame.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_jbnVisaProjektMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -887,31 +1056,36 @@ public class AndraProjekt extends javax.swing.JFrame {
     private javax.swing.JComboBox combStartAr;
     private javax.swing.JComboBox combStartDag;
     private javax.swing.JComboBox combStartManad;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListPlattformar;
     private javax.swing.JList jListProjektJobbare;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbnLaggTillPlattform;
     private javax.swing.JButton jbnLäggTillAnställd;
+    private javax.swing.JButton jbnLäggTillProjekt;
     private javax.swing.JButton jbnSattNyLedare;
     private javax.swing.JButton jbnSattSlutdatum;
     private javax.swing.JButton jbnSattStartdatum;
+    private javax.swing.JButton jbnSystemMeny;
+    private javax.swing.JButton jbnSättNamn;
     private javax.swing.JButton jbnTaBortAnstalld;
     private javax.swing.JButton jbnTaBortProjekt;
+    private javax.swing.JButton jbnVisaProjekt;
     private javax.swing.JLabel lblProjectLeaderName;
     private javax.swing.JLabel lblProjektbeskrivning;
     private javax.swing.JLabel lblSlutdatum;
     private javax.swing.JLabel lblStartDatumbeskrivning;
     private javax.swing.JLabel lblStartdatum;
     private javax.swing.JLabel lblslutdatumbeskrivning;
+    private javax.swing.JTextField txtProjektNamn;
     // End of variables declaration//GEN-END:variables
 
     private void setFyllProject() {
@@ -1191,25 +1365,4 @@ public class AndraProjekt extends javax.swing.JFrame {
         
     }
 
-    private void addItemListenersForDateCombos() {
-        
-        combStartManad.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                fyllAntalDagar(evt);
-            }
-
-            private void fyllAntalDagar(ItemEvent evt) {
-                Hjalpklass.fyllDagar(combStartDag, combStartManad.getSelectedItem().toString());
-            }
-        });
-        combSlutManad.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                fyllAntalDagar(evt);
-            }
-
-            private void fyllAntalDagar(ItemEvent evt) {
-                Hjalpklass.fyllDagar(combSlutDag, combSlutManad.getSelectedItem().toString());
-            }
-        });
-}
 }

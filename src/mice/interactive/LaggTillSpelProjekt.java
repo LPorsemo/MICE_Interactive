@@ -109,6 +109,9 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jListPlattformar = new javax.swing.JList();
         jbnLaggTillProjekt = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jbnSystemMeny = new javax.swing.JButton();
+        jbnUppdateraProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -561,6 +564,43 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Gå till"));
+
+        jbnSystemMeny.setText("System meny");
+        jbnSystemMeny.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnSystemMenyMouseClicked(evt);
+            }
+        });
+
+        jbnUppdateraProjekt.setText("Uppdatera Projekt");
+        jbnUppdateraProjekt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbnUppdateraProjektMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbnSystemMeny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbnUppdateraProjekt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbnSystemMeny)
+                    .addComponent(jbnUppdateraProjekt))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout forstapanelLayout = new javax.swing.GroupLayout(forstapanel);
         forstapanel.setLayout(forstapanelLayout);
         forstapanelLayout.setHorizontalGroup(
@@ -571,12 +611,15 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(PBakgrund2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(forstapanelLayout.createSequentialGroup()
-                .addComponent(LblÖverskrift)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, forstapanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jbnLaggTillProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(343, 343, 343))
+                .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, forstapanelLayout.createSequentialGroup()
+                        .addComponent(jbnLaggTillProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, forstapanelLayout.createSequentialGroup()
+                        .addComponent(LblÖverskrift)
+                        .addGap(320, 320, 320))))
         );
         forstapanelLayout.setVerticalGroup(
             forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,8 +631,10 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
                     .addComponent(PBakgrund2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PBakgrund, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbnLaggTillProjekt)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(forstapanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbnLaggTillProjekt)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -603,9 +648,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(forstapanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+            .addComponent(forstapanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -675,11 +718,19 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     }//GEN-LAST:event_jbnLaggTillMouseClicked
 
     private void jbnLaggTillLedareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnLaggTillLedareMouseClicked
-        if (combLedare.getSelectedItem().toString() == "<none>")
+        
+        if (combLedare.getSelectedItem().toString().equals("<none>") && lblLedare.getText().equals("<none>"))
         {
-            JOptionPane.showMessageDialog(null, "Välj en ledare att leda projektet");
+            JOptionPane.showMessageDialog(null, "Välj en ledare att leda projektet");    
             return;
         }
+        if(combLedare.getSelectedItem().toString().equals("<none>"))
+        {
+            lblLedare.setText("<none>");
+            return;
+        }
+        
+        
         lblLedare.setText(combLedare.getSelectedItem().toString());
         
     }//GEN-LAST:event_jbnLaggTillLedareMouseClicked
@@ -842,6 +893,20 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Du har lagt till projektet " + lblprojektnamn.getText() );
     }//GEN-LAST:event_jbnLaggTillProjektMouseClicked
+
+    private void jbnSystemMenyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnSystemMenyMouseClicked
+        // TODO add your handling code here:
+        Inloggad InloggadFrame = new Inloggad(); 
+        InloggadFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbnSystemMenyMouseClicked
+
+    private void jbnUppdateraProjektMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbnUppdateraProjektMouseClicked
+        // TODO add your handling code here:
+        AndraProjekt AndraProjektFrame = new AndraProjekt(); 
+        AndraProjektFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbnUppdateraProjektMouseClicked
     
     /**
      * @param args the command line arguments
@@ -907,6 +972,7 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private javax.swing.JPanel forstapanel;
     private javax.swing.JList jListAnstallda;
     private javax.swing.JList jListPlattformar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbnLaggTill;
@@ -916,8 +982,10 @@ public class LaggTillSpelProjekt extends javax.swing.JFrame {
     private javax.swing.JButton jbnLaggtillAnstalld;
     private javax.swing.JButton jbnSlutdatum;
     private javax.swing.JButton jbnStartdatum;
+    private javax.swing.JButton jbnSystemMeny;
     private javax.swing.JButton jbnTaBortPlattform;
     private javax.swing.JButton jbnTabortAnstalld;
+    private javax.swing.JButton jbnUppdateraProjekt;
     private javax.swing.JTextField laggTillProjektNamn;
     private javax.swing.JLabel lblLedare;
     private javax.swing.JLabel lblProjektNamn;
